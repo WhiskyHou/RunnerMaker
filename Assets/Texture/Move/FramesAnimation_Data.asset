@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a64e5b0e436d4bed9780211ae245f7b, type: 3}
+  m_Name: FramesAnimation_Data
+  m_EditorClassIdentifier: 
+  dataName: FramesAnimation
+  dragonBonesJSON: {fileID: 4900000, guid: dcfc4af286e10b140b6d07d9ac1a8a59, type: 3}
+  textureAtlas:
+  - textureAtlasJSON: {fileID: 4900000, guid: aaf50be205feacd4c9a11326937032d3, type: 3}
+    texture: {fileID: 2800000, guid: e045d12f105a4084f9ee6c5992442bd5, type: 3}
+    material: {fileID: 2100000, guid: 0ba118fd050cabe468c1509feaa504ea, type: 2}
+    uiMaterial: {fileID: 2100000, guid: bcf17190d15f1914bb1c26e3df4d9ddc, type: 2}

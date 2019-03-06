@@ -1,0 +1,127 @@
+{
+    "frameRate": 24,
+    "armature": [
+        {
+            "animation": [
+                {
+                    "playTimes": 0,
+                    "frame": [],
+                    "slot": [
+                        {
+                            "displayFrame": [
+                                {
+                                    "duration": 1
+                                },
+                                {
+                                    "value": 1,
+                                    "duration": 1
+                                },
+                                {
+                                    "value": 2,
+                                    "duration": 1
+                                },
+                                {
+                                    "value": 3,
+                                    "duration": 1
+                                },
+                                {
+                                    "value": 4,
+                                    "duration": 1
+                                },
+                                {
+                                    "value": 5,
+                                    "duration": 1
+                                }
+                            ],
+                            "colorFrame": [],
+                            "name": "sheetSlot"
+                        }
+                    ],
+                    "duration": 6,
+                    "name": "boy-move",
+                    "bone": [],
+                    "ffd": []
+                }
+            ],
+            "type": "Sheet",
+            "name": "boy-move",
+            "bone": [
+                {
+                    "name": "root",
+                    "transform": {}
+                }
+            ],
+            "skin": [
+                {
+                    "slot": [
+                        {
+                            "display": [
+                                {
+                                    "path": "4_move_0",
+                                    "type": "image",
+                                    "name": "4_move_0",
+                                    "transform": {}
+                                },
+                                {
+                                    "path": "4_move_1",
+                                    "type": "image",
+                                    "name": "4_move_1",
+                                    "transform": {}
+                                },
+                                {
+                                    "path": "4_move_2",
+                                    "type": "image",
+                                    "name": "4_move_2",
+                                    "transform": {}
+                                },
+                                {
+                                    "path": "4_move_3",
+                                    "type": "image",
+                                    "name": "4_move_3",
+                                    "transform": {}
+                                },
+                                {
+                                    "path": "4_move_4",
+                                    "type": "image",
+                                    "name": "4_move_4",
+                                    "transform": {}
+                                },
+                                {
+                                    "path": "4_move_5",
+                                    "type": "image",
+                                    "name": "4_move_5",
+                                    "transform": {}
+                                }
+                            ],
+                            "name": "sheetSlot"
+                        }
+                    ],
+                    "name": ""
+                }
+            ],
+            "aabb": {
+                "width": 150,
+                "y": -75,
+                "height": 150,
+                "x": -75
+            },
+            "ik": [],
+            "slot": [
+                {
+                    "color": {},
+                    "name": "sheetSlot",
+                    "parent": "root"
+                }
+            ],
+            "frameRate": 6,
+            "defaultActions": [
+                {
+                    "gotoAndPlay": "boy-move"
+                }
+            ]
+        }
+    ],
+    "name": "FramesAnimation",
+    "version": "5.5",
+    "isGlobal": 0
+}

@@ -13,6 +13,10 @@
 sysinfo.txt
 *.pidb.meta
 
+#DragonBones
+/Assets/DragonBones/
+/Assets/DragonBones.meta
+
 #VS/Rider/MD/Consulo
 ExportedObj/
 .consulo/
