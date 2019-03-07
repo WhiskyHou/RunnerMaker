@@ -8,9 +8,8 @@ public class DemoAnimTest : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-		ua = GetComponent<DragonBones.UnityArmatureComponent>();
-		//ua.armature.GetSlot("boy-stand").armature = DragonBones.UnityFactory.factory.BuildArmature("girl-stand");
-		//ua.animation.Play("boy-stand");
+		//ua.armature.replacedTexture
+		ua.animation.Play("boy-fall");
 		Debug.Log(Time.realtimeSinceStartup);
 		Stop();
     }
@@ -22,7 +21,7 @@ public class DemoAnimTest : MonoBehaviour {
 
 	private async Task Stop() {
 		await Task.Delay(5000);
-		ua.animation.Stop("boy-stand");
+		ua.animation.Stop("boy-fall");
 		Debug.Log(Time.realtimeSinceStartup);
 	}
 }
