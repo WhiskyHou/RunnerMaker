@@ -1,113 +1,70 @@
 ﻿using System;
 using System.IO;
-using System.Collections;
+using System.Text;
+using System.Net;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Text;
 
 public class MapBuilder : MonoBehaviour {
 
 	public string jsonPath;
 
-	private string json = @"{""maps"": [
-        {
-            ""id"": 0,
-            ""nickName"": ""测试地图1"",
-            ""countDown"": 120,
-            ""width"": 16,
-            ""height"": 9,
-            ""startPos"": {
-                ""x"": 0,
-                ""y"": 1
-            },
-            ""endPos"": {
-                ""x"": 8,
-                ""y"": 1
-            },
-            ""nodeInfo"": [
-                {
-                    ""pos"": {
-                        ""x"": 0,
-                        ""y"": 0
-
-					},
-                    ""prefabType"": ""wall""
-                },
-                {
-                    ""pos"": {
-                        ""x"": 1,
-                        ""y"": 0
-                    },
-                    ""prefabType"": ""wall""
-                },
-                {
-                    ""pos"": {
-                        ""x"": 2,
-                        ""y"": 0
-                    },
-                    ""prefabType"": ""wall""
-                },
-                {
-                    ""pos"": {
-                        ""x"": 3,
-                        ""y"": 0
-                    },
-                    ""prefabType"": ""wall""
-                },
-                {
-                    ""pos"": {
-                        ""x"": 4,
-                        ""y"": 0
-                    },
-                    ""prefabType"": ""wall""
-                },
-                {
-                    ""pos"": {
-                        ""x"": 5,
-                        ""y"": 0
-                    },
-                    ""prefabType"": ""wall""
-                },
-                {
-                    ""pos"": {
-                        ""x"": 6,
-                        ""y"": 0
-                    },
-                    ""prefabType"": ""wall""
-                }
-            ]
-        }
-    ]
-}";
 	private string res;
 
 	private Maps data;
 
 	void Awake() {
-		//TextAsset text = Resources.Load("Config/maps") as TextAsset;		// path这里前面默认拼上 Resources/
-		//Debug.Log(text);
-		FileStream fs = File.OpenRead("Assets/Config/maps.json");
-		byte[] d = new byte[2048];
-		UTF8Encoding temp = new UTF8Encoding(true);
-		int times = 0;
-		res = "";
-		while (fs.Read(d, 0, d.Length) > 0) {
-			Debug.Log(temp.GetString(d));
-			res += temp.GetString(d);
-			times++;
-		}
-		Debug.Log(times);
-		Debug.Log(res);
+		//LoadFromLocal();		// 本地读取
+		//LoadFromNetSync();		// 网络同步读取
+		LoadFromNetAsync();		// 网络异步读取
 	}
 
 	void Start() {
-		data = JsonUtility.FromJson<Maps>(res);
-		data.maps[0].Log();
+		
     }
 
     void Update() {
         
     }
+
+	public void LoadFromLocal() {
+		FileStream fs = File.OpenRead("Assets/Config/maps.json");
+		byte[] d = new byte[2000];
+		UTF8Encoding temp = new UTF8Encoding(true);
+		int times = 0;
+		res = "";
+		while (fs.Read(d, 0, d.Length) > 0) {
+			res += temp.GetString(d);
+			times++;
+		}
+		ParseJson();
+	}
+
+	public void LoadFromNetSync() {
+		byte[] d;
+		UTF8Encoding temp = new UTF8Encoding(true);
+		using (WebClient wc = new WebClient()) {
+			d = wc.DownloadData(new Uri("http://172.18.6.97:8080/maps.json"));
+			res = temp.GetString(d);
+			ParseJson();
+		}
+	}
+
+	public void LoadFromNetAsync() {
+		UTF8Encoding temp = new UTF8Encoding(true);
+		using (WebClient wc = new WebClient()) {
+			wc.Credentials = CredentialCache.DefaultCredentials;
+			wc.DownloadDataCompleted += new DownloadDataCompletedEventHandler(
+				(object sender, DownloadDataCompletedEventArgs e) => { res = temp.GetString(e.Result); ParseJson(); }
+			);
+			wc.DownloadDataAsync(new Uri("http://172.18.6.97:8080/maps.json"));
+		}
+	}
+
+	public void ParseJson() {
+		data = JsonUtility.FromJson<Maps>(res);
+		data.maps[0].Log();
+	}
 }
 
 [Serializable]
