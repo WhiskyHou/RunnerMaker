@@ -79,22 +79,29 @@ public class MapBuilder : MonoBehaviour {
         }
     ]
 }";
+	private string res;
 
 	private Maps data;
 
 	void Awake() {
 		//TextAsset text = Resources.Load("Config/maps") as TextAsset;		// path这里前面默认拼上 Resources/
 		//Debug.Log(text);
-		FileStream fs = File.Create("Assets/Config/maps.json");
+		FileStream fs = File.OpenRead("Assets/Config/maps.json");
 		byte[] d = new byte[2048];
 		UTF8Encoding temp = new UTF8Encoding(true);
+		int times = 0;
+		res = "";
 		while (fs.Read(d, 0, d.Length) > 0) {
 			Debug.Log(temp.GetString(d));
+			res += temp.GetString(d);
+			times++;
 		}
+		Debug.Log(times);
+		Debug.Log(res);
 	}
 
 	void Start() {
-		data = JsonUtility.FromJson<Maps>(json);
+		data = JsonUtility.FromJson<Maps>(res);
 		data.maps[0].Log();
     }
 

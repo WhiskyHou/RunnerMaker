@@ -1,0 +1,70 @@
+{
+    "maps": [
+        {
+            "id": 0,
+            "nickName": "测试地图 本地文件",
+            "countDown": 120,
+            "width": 16,
+            "height": 9,
+            "startPos": {
+                "x": 0,
+                "y": 1
+            },
+            "endPos": {
+                "x": 8,
+                "y": 1
+            },
+            "nodeInfo": [
+                {
+                    "pos": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "prefabType": "wall"
+                },
+                {
+                    "pos": {
+                        "x": 1,
+                        "y": 0
+                    },
+                    "prefabType": "wall"
+                },
+                {
+                    "pos": {
+                        "x": 2,
+                        "y": 0
+                    },
+                    "prefabType": "wall"
+                },
+                {
+                    "pos": {
+                        "x": 3,
+                        "y": 0
+                    },
+                    "prefabType": "wall"
+                },
+                {
+                    "pos": {
+                        "x": 4,
+                        "y": 0
+                    },
+                    "prefabType": "wall"
+                },
+                {
+                    "pos": {
+                        "x": 5,
+                        "y": 0
+                    },
+                    "prefabType": "wall"
+                },
+                {
+                    "pos": {
+                        "x": 6,
+                        "y": 0
+                    },
+                    "prefabType": "wall"
+                }
+            ]
+        }
+    ]
+}
