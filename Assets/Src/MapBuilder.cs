@@ -14,9 +14,9 @@ public class MapBuilder : MonoBehaviour {
 	private Maps data;
 
 	void Awake() {
-		//LoadFromLocal();		// 本地读取
+		LoadFromLocal();		// 本地读取
 		//LoadFromNetSync();		// 网络同步读取
-		LoadFromNetAsync();		// 网络异步读取
+		//LoadFromNetAsync();		// 网络异步读取
 	}
 
 	void Start() {
@@ -29,7 +29,7 @@ public class MapBuilder : MonoBehaviour {
 
 	public void LoadFromLocal() {
 		FileStream fs = File.OpenRead("Assets/Config/maps.json");
-		byte[] d = new byte[2000];
+		byte[] d = new byte[4096];
 		UTF8Encoding temp = new UTF8Encoding(true);
 		int times = 0;
 		res = "";
@@ -64,6 +64,24 @@ public class MapBuilder : MonoBehaviour {
 	public void ParseJson() {
 		data = JsonUtility.FromJson<Maps>(res);
 		data.maps[0].Log();
+		Build();
+	}
+
+	public void Build() {
+		Map currentMap = data.maps[0];
+
+		GameObject player = Resources.Load("prefab/player") as GameObject;
+		player = Instantiate(player);
+		player.transform.Translate(new Vector3(currentMap.startPos.x, currentMap.startPos.y, 0));
+		player.name = player.tag = "Player";
+
+		List<NodeInfo> nodes = currentMap.nodeInfo;
+		nodes.ForEach((item) => {
+			GameObject node = Resources.Load("prefab/" + item.prefabType) as GameObject;
+			node = Instantiate(node);
+			node.transform.Translate(new Vector3(item.pos.x, item.pos.y, 0));
+			node.name = node.tag = item.prefabType;
+		});
 	}
 }
 

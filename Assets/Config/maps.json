@@ -20,49 +20,56 @@
                         "x": 0,
                         "y": 0
                     },
-                    "prefabType": "wall"
+                    "prefabType": "Stone"
                 },
                 {
                     "pos": {
                         "x": 1,
                         "y": 0
                     },
-                    "prefabType": "wall"
+                    "prefabType": "Stone"
                 },
                 {
                     "pos": {
                         "x": 2,
                         "y": 0
                     },
-                    "prefabType": "wall"
+                    "prefabType": "Stone"
                 },
                 {
                     "pos": {
                         "x": 3,
                         "y": 0
                     },
-                    "prefabType": "wall"
+                    "prefabType": "Stone"
                 },
                 {
                     "pos": {
                         "x": 4,
                         "y": 0
                     },
-                    "prefabType": "wall"
+                    "prefabType": "Stone"
                 },
                 {
                     "pos": {
                         "x": 5,
                         "y": 0
                     },
-                    "prefabType": "wall"
+                    "prefabType": "Stone"
                 },
                 {
                     "pos": {
                         "x": 6,
                         "y": 0
                     },
-                    "prefabType": "wall"
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
+                        "x": 6,
+                        "y": 1
+                    },
+                    "prefabType": "End"
                 }
             ]
         }
