@@ -15,7 +15,13 @@ public class HomeManager : MonoBehaviour {
 
 	private async Task LoadGameScene() {
 		await Task.Delay(3000);
-		SceneManager.LoadScene("SampleScene");
+		//SceneManager.LoadScene("SampleScene");
+		Application.LoadLevelAdditive("SampleScene");
+		//Scene current = SceneManager.GetSceneByName("HomeScene");
+		//GameObject[] objs = current.GetRootGameObjects();
+		//for (int i = 0; i < objs.Length; ++i) {
+		//	objs[i].SetActive(false);
+		//}
 		Debug.Log("===== Load to SmpleScene =====");
 	}
 }
