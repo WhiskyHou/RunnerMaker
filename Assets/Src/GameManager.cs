@@ -15,6 +15,6 @@ public class GameManager : MonoBehaviour {
     void Update() {
 		float deltaTime = Time.deltaTime;
 
-		fpsLog.Update(deltaTime);
+		// fpsLog.Update(deltaTime);
     }
 }

@@ -10,7 +10,6 @@ public class DemoAnimTest : MonoBehaviour {
     void Start() {
 		//ua.armature.replacedTexture
 		ua.animation.Play("boy-fall");
-		Debug.Log(Time.realtimeSinceStartup);
 		Stop();
     }
 
@@ -22,6 +21,5 @@ public class DemoAnimTest : MonoBehaviour {
 	private async Task Stop() {
 		await Task.Delay(5000);
 		ua.animation.Stop("boy-fall");
-		Debug.Log(Time.realtimeSinceStartup);
 	}
 }

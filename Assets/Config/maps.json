@@ -66,6 +66,34 @@
                 },
                 {
                     "pos": {
+                        "x": 5,
+                        "y": 3
+                    },
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
+                        "x": 6,
+                        "y": 3
+                    },
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
+                        "x": 7,
+                        "y": 3
+                    },
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
+                        "x": 8,
+                        "y": 3
+                    },
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
                         "x": 6,
                         "y": 1
                     },
