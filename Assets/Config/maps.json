@@ -66,6 +66,27 @@
                 },
                 {
                     "pos": {
+                        "x": -2,
+                        "y": 2
+                    },
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
+                        "x": -1,
+                        "y": 2
+                    },
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
+                        "x": 0,
+                        "y": 2
+                    },
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
                         "x": 5,
                         "y": 3
                     },
@@ -91,6 +112,41 @@
                         "y": 3
                     },
                     "prefabType": "Stone"
+                },
+                {
+                    "pos": {
+                        "x": 2,
+                        "y": 6
+                    },
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
+                        "x": 1,
+                        "y": 6
+                    },
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
+                        "x": 0,
+                        "y": 6
+                    },
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
+                        "x": -1,
+                        "y": 6
+                    },
+                    "prefabType": "Stone"
+                },
+                {
+                    "pos": {
+                        "x": 7,
+                        "y": 4
+                    },
+                    "prefabType": "Spring"
                 },
                 {
                     "pos": {

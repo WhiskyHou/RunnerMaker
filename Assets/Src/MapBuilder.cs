@@ -29,7 +29,7 @@ public class MapBuilder : MonoBehaviour {
 
 	public void LoadFromLocal() {
 		FileStream fs = File.OpenRead("Assets/Config/maps.json");
-		byte[] d = new byte[4096];
+		byte[] d = new byte[10240];
 		UTF8Encoding temp = new UTF8Encoding(true);
 		int times = 0;
 		res = "";

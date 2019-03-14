@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 4810425538570452680}
   - component: {fileID: 4810425538570452681}
   - component: {fileID: 992601110070852178}
+  - component: {fileID: 6587481065442469735}
   - component: {fileID: 4810425538570452686}
   - component: {fileID: 4810425538570452687}
   m_Layer: 0
@@ -192,13 +193,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4810425538570452684}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.12390593}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -209,10 +210,26 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.68, y: 0.57218814}
   m_EdgeRadius: 0
 --- !u!58 &992601110070852178
 CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810425538570452684}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: b8fb363b25d8cf246ab11f1988a0c420, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4
+--- !u!70 &6587481065442469735
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -224,9 +241,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Offset: {x: 0, y: -0.3}
+  m_Size: {x: 0.72, y: 0.3389648}
+  m_Direction: 1
 --- !u!50 &4810425538570452686
 Rigidbody2D:
   serializedVersion: 4
@@ -244,9 +261,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 4
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &4810425538570452687
 MonoBehaviour:
@@ -261,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 900
+  jumpForce: 860
   rigidbody: {fileID: 4810425538570452686}
   ua: {fileID: 4810425537717574445}
+  horizontalBufferNum: 0.9

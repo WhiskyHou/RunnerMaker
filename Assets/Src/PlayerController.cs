@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
 
 	public UnityArmatureComponent ua;
 
+	public float horizontalBufferNum;
+
 	private MovingState movingState = MovingState.stand;
 
 	private bool isAirring = false;
@@ -35,6 +37,8 @@ public class PlayerController : MonoBehaviour {
 			rigidbody.velocity = new Vector2(-moveSpeed, rigidbody.velocity.y);
 		} else if (movingState == MovingState.right) {
 			rigidbody.velocity = new Vector2(moveSpeed, rigidbody.velocity.y);
+		} else if (movingState == MovingState.stand) {
+			rigidbody.velocity = new Vector2(rigidbody.velocity.x * horizontalBufferNum, rigidbody.velocity.y);
 		}
 
 		if (!isAirring && goJump) {
@@ -73,12 +77,14 @@ public class PlayerController : MonoBehaviour {
 				ua.animation.Reset();
 			}
 		}
-	}
 
-	private void OnCollisionEnter2D(Collision2D collision) {
-		Vector3 temp = transform.position - collision.gameObject.transform.position;
-		bool isOnTarget = temp.y > Math.Abs(temp.x);
-		if(collision.gameObject.tag == "Stone" && isOnTarget) {
+		RaycastHit2D hit;
+		Vector3 down = new Vector3(0f, -0.6f);
+		Debug.DrawLine(transform.position, transform.position + down);
+		hit = Physics2D.Raycast(transform.position + down, Vector2.up, 0.1f);
+		if (hit.collider == null || hit.collider.name == "Player") {
+			isAirring = true;
+		} else {
 			isAirring = false;
 		}
 	}
