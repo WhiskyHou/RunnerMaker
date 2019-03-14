@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 860
+  jumpForce: 920
   rigidbody: {fileID: 4810425538570452686}
   ua: {fileID: 4810425537717574445}
   horizontalBufferNum: 0.9
