@@ -2,11 +2,12 @@
 
 ## 环境配置
 * 需要在 Assets 目录下 import [龙骨动画Unity插件](https://github.com/DragonBones/DragonBonesCSharp/releases)
+* 服务端项目地址 [RunnerMakerServer](https://github.com/WhiskyHou/RunnerMakerServer)
 
 ## 毕业设计任务书
 
 ## 进度
-#### 3.4 - 3.8
+### 3.4 - 3.8
 * 本周工作
     1. 初步编写需求分析文档和游戏设计文档
     2. 基本完成界面原形设计和交互流程设计
