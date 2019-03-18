@@ -156,3 +156,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLeft: 1
   moveSpeed: 6
+  maxRangeTime: 3

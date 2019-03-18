@@ -8,6 +8,10 @@ public class SharkBullet : MonoBehaviour {
 
 	public float moveSpeed;
 
+	public float maxRangeTime;
+
+	private float rangeTime = 0f;
+
     void Start() {
 		
 	}
@@ -15,6 +19,11 @@ public class SharkBullet : MonoBehaviour {
 	void Update() {
 		float delta = Time.deltaTime;
 		transform.Translate((isLeft ? Vector3.left : Vector3.right) * moveSpeed * delta);
+
+		rangeTime += delta;
+		if (rangeTime > maxRangeTime) {
+			Remove();
+		}
     }
 
 	void OnTriggerEnter2D(Collider2D collision) {
@@ -34,6 +43,7 @@ public class SharkBullet : MonoBehaviour {
 		} else {
 			gameObject.transform.localScale = new Vector3(1, 1, 1);
 		}
+		rangeTime = 0f;
 	}
 
 	public void Remove() {
