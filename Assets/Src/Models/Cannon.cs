@@ -29,11 +29,13 @@ public class Cannon : MonoBehaviour {
 
 	private void OpenFire() {
 		GameObject bulletLeft = pool.Get();
+		bulletLeft.name = bulletLeft.tag = "Bullet";
 		bulletLeft.SetActive(true);
 		bulletLeft.GetComponent<SharkBullet>().Init(firePoint.transform, true);
 		bulletLeft.transform.SetParent(gameObject.transform);
 
 		GameObject bulletRight = pool.Get();
+		bulletRight.name = bulletRight.tag = "Bullet";
 		bulletRight.SetActive(true);
 		bulletRight.GetComponent<SharkBullet>().Init(firePoint.transform, false);
 		bulletRight.transform.SetParent(gameObject.transform);

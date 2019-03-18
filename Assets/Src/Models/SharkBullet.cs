@@ -30,7 +30,7 @@ public class SharkBullet : MonoBehaviour {
 		if (collision.gameObject.tag == "Player") {
 			// ... player die
 			Remove();
-		} else if (collision.gameObject.tag != "Cannon" || collision.gameObject.tag != "SharkBullet") {
+		} else if (collision.gameObject.tag != "Cannon") {
 			Remove();
 		}
 	}

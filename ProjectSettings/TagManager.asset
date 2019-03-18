@@ -8,6 +8,8 @@ TagManager:
   - End
   - Spring
   - Cannon
+  - Ice
+  - Bullet
   layers:
   - Default
   - TransparentFX
