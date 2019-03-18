@@ -10,6 +10,8 @@ public class Cannon : MonoBehaviour {
 
 	public GameObject firePoint;
 
+	public ObjPool pool = new ObjPool();
+
 	private float fireTime = 0f;
 
     void Start() {
@@ -26,14 +28,16 @@ public class Cannon : MonoBehaviour {
     }
 
 	private void OpenFire() {
-		GameObject bulletLeft = Instantiate(bullet);
-		bulletLeft.GetComponent<SharkBullet>().isLeft = true;
+		GameObject bulletLeft = pool.Get();
+		if (bulletLeft == null) bulletLeft = Instantiate(bullet);
+		bulletLeft.SetActive(true);
+		bulletLeft.GetComponent<SharkBullet>().Init(firePoint.transform, true);
 		bulletLeft.transform.SetParent(gameObject.transform);
-		bulletLeft.transform.localPosition = firePoint.transform.localPosition;
 
-		GameObject bulletRight = Instantiate(bullet);
-		bulletRight.GetComponent<SharkBullet>().isLeft = false;
+		GameObject bulletRight = pool.Get();
+		if (bulletRight == null) bulletRight = Instantiate(bullet);
+		bulletRight.SetActive(true);
+		bulletRight.GetComponent<SharkBullet>().Init(firePoint.transform, false);
 		bulletRight.transform.SetParent(gameObject.transform);
-		bulletRight.transform.localPosition = firePoint.transform.localPosition;
 	}
 }

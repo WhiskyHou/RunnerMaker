@@ -9,20 +9,34 @@ public class SharkBullet : MonoBehaviour {
 	public float moveSpeed;
 
     void Start() {
-		if (!isLeft) {
-			gameObject.transform.Find("cannon_bullet").GetComponent<SpriteRenderer>().flipX = true;
-		}
-    }
+		
+	}
 
 	void Update() {
 		float delta = Time.deltaTime;
 		transform.Translate((isLeft ? Vector3.left : Vector3.right) * moveSpeed * delta);
     }
 
-	private void OnTriggerEnter2D(Collider2D collision) {
-		if(collision.gameObject.tag == "Player") {
-			// player die
+	void OnTriggerEnter2D(Collider2D collision) {
+		if (collision.gameObject.tag == "Player") {
+			// ... player die
+			Remove();
+		} else if (collision.gameObject.tag != "Cannon" || collision.gameObject.tag != "SharkBullet") {
+			Remove();
 		}
-		//Destroy(gameObject);
+	}
+
+	public void Init(Transform transform, bool isLeft) {
+		gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+		this.isLeft = isLeft;
+		if (!isLeft) {
+			gameObject.transform.localScale = new Vector3(-1, 1, 1);
+		} else {
+			gameObject.transform.localScale = new Vector3(1, 1, 1);
+		}
+	}
+
+	public void Remove() {
+		transform.parent.gameObject.GetComponent<Cannon>().pool.Add(gameObject);
 	}
 }
