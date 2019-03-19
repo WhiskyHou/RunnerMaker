@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour {
 	private bool goJump = false;
 
     void Start() {
-        
+		GameCameraController gameCamera = GameObject.Find("GameCamera").GetComponent<GameCameraController>();
+		gameCamera.SetPlayer(this.gameObject);
     }
 
 	void FixedUpdate() {
