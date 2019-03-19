@@ -10,6 +10,7 @@ TagManager:
   - Cannon
   - Ice
   - Bullet
+  - Sword
   layers:
   - Default
   - TransparentFX
