@@ -11,6 +11,7 @@ TagManager:
   - Ice
   - Bullet
   - Sword
+  - Killer
   layers:
   - Default
   - TransparentFX
