@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class MapBuilder : MonoBehaviour {
 
+	public FileHelper fileHelper;
+
 	public string jsonPath;
 
 	private string res;
@@ -28,7 +30,7 @@ public class MapBuilder : MonoBehaviour {
     }
 
 	public void LoadFromLocal() {
-		FileStream fs = File.OpenRead("Assets/Config/maps.json");
+		FileStream fs = System.IO.File.OpenRead("Assets/Config/maps.json");
 		byte[] d = new byte[10240];
 		UTF8Encoding temp = new UTF8Encoding(true);
 		int times = 0;
@@ -65,6 +67,8 @@ public class MapBuilder : MonoBehaviour {
 		data = JsonUtility.FromJson<Maps>(res);
 		data.maps[0].Log();
 		Build();
+
+		fileHelper.WriteToFile(JsonUtility.ToJson(data));
 	}
 
 	public void Build() {
