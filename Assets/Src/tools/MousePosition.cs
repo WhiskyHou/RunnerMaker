@@ -6,43 +6,37 @@ using UnityEngine;
 public class MousePosition : MonoBehaviour {
 
 	public GameObject player;
-
 	public GameObject end;
-
 	public GameObject stone;
-
 	public GameObject ice;
-
 	public GameObject killer;
-
 	public GameObject spring;
-
 	public GameObject sword;
-
 	public GameObject cannon;
+
+	public FileHelper fileHelper;
+
+	private Map map = new Map();
 
 	private GameObject currentObject = null;
 
 	private List<GameObject> list = new List<GameObject>();
 
-	public const float logInterval = 1f;
-
-	private float logDelta = 0f;
-
     void Start() {
-		
+		map.id = -1;
+		map.nickName = "out";
+		map.countDown = 120;
+		map.width = 100;
+		map.height = 100;
+		map.startPos = new Position();
+		map.endPos = new Position();
+		map.nodeInfo = new List<NodeInfo>();
     }
 
     void Update() {
-		logDelta += Time.deltaTime;
 
 		Vector3 mousePosOnScene = Input.mousePosition;
 		Vector3 mousePosInWorld = Camera.main.ScreenToWorldPoint(mousePosOnScene);
-
-		if (logDelta > logInterval) {
-			Debug.Log(mousePosInWorld);
-			logDelta = 0f;
-		}
 		
 		if (Input.GetKeyDown(KeyCode.Mouse0)) {
 			if (!currentObject) {
@@ -71,11 +65,16 @@ public class MousePosition : MonoBehaviour {
 		} else if (Input.GetKeyDown(KeyCode.Alpha9)) {
 			currentObject = null;
 		}
+
+		if (Input.GetKeyDown(KeyCode.RightShift)) {
+			SaveToFile();
+		}
     }
 
 	private void CreateObj(int x, int y) {
 		GameObject go = Instantiate(currentObject);
 		go.transform.position = new Vector3(x, y, go.transform.position.z);
+		go.name = currentObject.name;
 
 		list.Add(go);
 	}
@@ -89,5 +88,29 @@ public class MousePosition : MonoBehaviour {
 				return;
 			}
 		}
+	}
+
+	private void SaveToFile() {
+		list.ForEach((item) => {
+			Vector3 pos = item.transform.position;
+			if(item.name == "Player") {
+				map.startPos.x = (int)pos.x;
+				map.startPos.y = (int)pos.y;
+			} else if(item.name == "End") {
+				map.endPos.x = (int)pos.x;
+				map.endPos.y = (int)pos.y;
+			} else {
+				NodeInfo node = new NodeInfo();
+				node.pos = new Position();
+				node.pos.x = (int)pos.x;
+				node.pos.y = (int)pos.y;
+				node.prefabType = item.name;
+				map.nodeInfo.Add(node);
+			}
+		});
+
+		map.Log();
+
+		fileHelper.WriteToFile(JsonUtility.ToJson(map));
 	}
 }

@@ -246,6 +246,7 @@ MonoBehaviour:
   spring: {fileID: 5372657344983540137, guid: 9c9a3df9b0b4a7f4ea1446d1cbdfe6fc, type: 3}
   sword: {fileID: 1905005502488368604, guid: 016db50f42d2d434d982197ac82a37ab, type: 3}
   cannon: {fileID: 3242981028525350176, guid: 11c66caa23d964a43b7f487959203831, type: 3}
+  fileHelper: {fileID: 1598242711}
 --- !u!4 &1598242710
 Transform:
   m_ObjectHideFlags: 0

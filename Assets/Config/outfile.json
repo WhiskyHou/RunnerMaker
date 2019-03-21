@@ -1,0 +1,73 @@
+{
+    "id": -1,
+    "nickName": "out",
+    "countDown": 120,
+    "width": 100,
+    "height": 100,
+    "startPos": {
+        "x": 0,
+        "y": 2
+    },
+    "endPos": {
+        "x": 3,
+        "y": 2
+    },
+    "nodeInfo": [
+        {
+            "pos": {
+                "x": 0,
+                "y": -1
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 1,
+                "y": -1
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 2,
+                "y": -1
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 3,
+                "y": -1
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 0,
+                "y": 1
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 1,
+                "y": 1
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 2,
+                "y": 1
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 3,
+                "y": 1
+            },
+            "prefabType": "Ice"
+        }
+    ]
+}
