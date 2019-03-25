@@ -14,26 +14,19 @@ public class EditorManager : MonoBehaviour {
 
 	private List<GameObject> list = new List<GameObject>();
 
-
 	void Start() {
-		map.id = -1;
-		map.nickName = "out";
-		map.countDown = 120;
-		map.width = 100;
-		map.height = 100;
-		map.startPos = new Position();
-		map.endPos = new Position();
-		map.nodeInfo = new List<NodeInfo>();
+		map = JsonUtility.FromJson<Map>(OpenMap.Instance.mapData);
+		BuildMap();
 	}
 
-    void Update() {
-        
-    }
+	void Update() {
+
+	}
 
 	public void ClickMouse(int x, int y, bool isLeft) {
 		if (isLeft) {
 			//(currentObject == null) ? RemoveObj(x, y) : CreateObj(x,y);
-			if(currentObject == null) {
+			if (currentObject == null) {
 				RemoveObj(x, y);
 			} else {
 				CreateObj(x, y);
@@ -44,7 +37,7 @@ public class EditorManager : MonoBehaviour {
 	}
 
 	public void ClickNumber(int number) {
-		if(number < prefabs.Length) {
+		if (number < prefabs.Length) {
 			currentObject = prefabs[number];
 		}
 	}
@@ -57,6 +50,26 @@ public class EditorManager : MonoBehaviour {
 			default:
 				break;
 		}
+	}
+	
+	private void BuildMap() {
+		// 1. 根据尺寸进行区块描边
+		// ...
+
+		// 2. 创建起点和终点
+		currentObject = prefabs[7];
+		CreateObj(map.startPos.x, map.startPos.y);
+		currentObject = prefabs[8];
+		CreateObj(map.endPos.x, map.endPos.y);
+
+		// 3. 创建模块
+		currentObject = prefabs[1];
+		map.nodeInfo.ForEach((item) => {
+			CreateObj(item.pos.x, item.pos.y);
+		});
+
+		// 4. 重置当前选定预制体为空
+		currentObject = null;
 	}
 
 	private void CreateObj(int x, int y) {
@@ -79,6 +92,9 @@ public class EditorManager : MonoBehaviour {
 	}
 
 	private void SaveToFile() {
+		Debug.Log("=== Save List's length: " + list.Count);
+
+		map.nodeInfo.Clear();
 		list.ForEach((item) => {
 			Vector3 pos = item.transform.position;
 			if (item.name == "Player") {
@@ -88,8 +104,9 @@ public class EditorManager : MonoBehaviour {
 				map.endPos.x = (int)pos.x;
 				map.endPos.y = (int)pos.y;
 			} else {
-				NodeInfo node = new NodeInfo();
-				node.pos = new Position();
+				NodeInfo node = new NodeInfo {
+					pos = new Position()
+				};
 				node.pos.x = (int)pos.x;
 				node.pos.y = (int)pos.y;
 				node.prefabType = item.name;
