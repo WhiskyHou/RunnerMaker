@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b06393fa8a61584785705adff9658ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 6
 --- !u!1 &2057852521
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +262,7 @@ MonoBehaviour:
   - {fileID: 472793862431510674, guid: da97f8153e4a89d42abe03fcfb61ed5b, type: 3}
   - {fileID: 2446123394436015826, guid: d7ca34319c6efb14ba927e4ff584216c, type: 3}
   - {fileID: 675474944591378033, guid: 228632e99755c074bb28c8aa0b213600, type: 3}
+  line: {fileID: 7781894417180286062, guid: ac32f3f4aa6123248b76137a03f61702, type: 3}
   fileHelper: {fileID: 2057852524}
 --- !u!114 &2057852524
 MonoBehaviour:

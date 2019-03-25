@@ -6,6 +6,8 @@ public class EditorManager : MonoBehaviour {
 
 	public GameObject[] prefabs = new GameObject[9];
 
+	public GameObject line;
+
 	public FileHelper fileHelper;
 
 	private Map map = new Map();
@@ -51,10 +53,21 @@ public class EditorManager : MonoBehaviour {
 				break;
 		}
 	}
-	
+
 	private void BuildMap() {
 		// 1. 根据尺寸进行区块描边
-		// ...
+		for (int i = 0; i <= map.width; ++i) {
+			GameObject line = Instantiate(this.line);
+			LineRenderer render = line.GetComponent<LineRenderer>();
+			render.SetPosition(0, new Vector3(i + 0.5f, 0.5f, 0.1f));
+			render.SetPosition(1, new Vector3(i + 0.5f, map.height + 0.5f, 0.1f));
+		}
+		for(int i = 0; i <= map.height; ++i) {
+			GameObject line = Instantiate(this.line);
+			LineRenderer render = line.GetComponent<LineRenderer>();
+			render.SetPosition(0, new Vector3(0.5f, i + 0.5f, 0.1f));
+			render.SetPosition(1, new Vector3(map.width + 0.5f, i + 0.5f, 0.1f));
+		}
 
 		// 2. 创建起点和终点
 		currentObject = prefabs[7];
