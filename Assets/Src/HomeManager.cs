@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HomeManager : MonoBehaviour {
     void Start() {
-		LoadGameScene();
+		Task task = LoadGameScene();
     }
 
     void Update() {

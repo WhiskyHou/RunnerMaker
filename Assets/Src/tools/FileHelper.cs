@@ -1,4 +1,7 @@
 ﻿using System.IO;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +9,8 @@ using UnityEngine;
 public class FileHelper : MonoBehaviour {
 
 	private string path = @"Assets/config/outfile.json";
+
+	private string data = "";
 
     void Start() {
         
@@ -15,7 +20,20 @@ public class FileHelper : MonoBehaviour {
         
     }
 
-	public void WriteToFile(string data) {
-		File.WriteAllText(path, data);
+	public void WriteToFile(string path, string data) {
+		try {
+			File.WriteAllText(path, data, Encoding.UTF8);
+		} catch (IOException error) {
+			Debug.Log("=== FileHelper Error ===\n" + error);
+			throw error;
+		}
+	}
+
+	public void WriteToFileAsync(string path, string data) {
+		ThreadStart threadStart = new ThreadStart(() => {
+			File.WriteAllText(path, data, Encoding.UTF8);
+		});
+		Thread thread = new Thread(threadStart);
+		thread.Start();
 	}
 }
