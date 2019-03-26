@@ -3,6 +3,11 @@
         {
             "id": 0,
             "nickName": "测试地图 本地文件",
+            "createrName": "houyi",
+            "goodCount": 0,
+            "diffCount": 0,
+            "passCount": 0,
+            "trysCount": 0,
             "countDown": 120,
             "width": 16,
             "height": 9,

@@ -16,15 +16,23 @@ public class Maps {
 public class Map {
 	public int id;
 	public string nickName;
+	public string createrName;
+
+	public int goodCount;
+	public int diffCount;
+	public int passCount;
+	public int trysCount;
+
 	public int countDown;
 	public int width;
 	public int height;
+
 	public Position startPos;
 	public Position endPos;
 	public List<NodeInfo> nodeInfo;
 
 	public void Log() {
-		Debug.Log("===== Map =====\n" + "id:" + id + " nickName:" + nickName + " countDown:" + countDown + " width:" + width + " height:" + height + " nodeInfoLength:" + nodeInfo.Count);
+		Debug.Log("===== Map =====\n" + "id:" + id + " nickName:" + nickName + " creater:" + createrName + " countDown:" + countDown + " width:" + width + " height:" + height + " nodeInfoLength:" + nodeInfo.Count);
 	}
 }
 
