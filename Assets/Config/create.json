@@ -1,0 +1,21 @@
+﻿{
+    "id": -1,
+    "nickName": "create",
+    "createrName": "@houyi",
+    "goodCount": 0,
+    "diffCount": 0,
+    "passCount": 0,
+    "trysCount": 0,
+    "countDown": 120,
+    "width": 20,
+    "height": 30,
+    "startPos": {
+        "x": 0,
+        "y": 0
+    },
+    "endPos": {
+        "x": 0,
+        "y": 0
+    },
+    "nodeInfo": []
+}

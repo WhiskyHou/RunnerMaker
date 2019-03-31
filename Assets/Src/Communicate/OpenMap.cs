@@ -29,6 +29,8 @@ public class OpenMap {
 
 	public string mapData;
 
+
+	// constructor
 	public OpenMap() {
 		//map.id = -1;
 		//map.nickName = "openmap";
