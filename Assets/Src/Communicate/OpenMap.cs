@@ -47,7 +47,10 @@ public class OpenMap {
 	}
 
 	public void LoadMapFile(string filename) {
-		mapData = File.ReadAllText(@"Assets/Config/" + filename + ".json");
+		//mapData = File.ReadAllText(@"Assets/Config/" + filename + ".json");
+
+		// windows build
+		mapData = File.ReadAllText(@"config/out.json");
 	}
 
 }
