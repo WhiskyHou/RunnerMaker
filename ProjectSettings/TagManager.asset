@@ -12,6 +12,7 @@ TagManager:
   - Bullet
   - Sword
   - Killer
+  - Brick
   layers:
   - Default
   - TransparentFX
