@@ -134,7 +134,7 @@ public class EditorManager : MonoBehaviour {
 		fileHelper.WriteToFileAsync(@"Assets/Config/out.json", JsonUtility.ToJson(map));
 
 		NetHelper net = GetComponent<NetHelper>();
-		string result = net.Post("http://localhost:8686", JsonUtility.ToJson(map));
+		string result = net.Post("/", JsonUtility.ToJson(map));
 		Debug.Log("=== net result: " + result);
 	}
 }

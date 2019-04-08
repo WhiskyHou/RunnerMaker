@@ -6,6 +6,9 @@ using System.Text;
 using UnityEngine;
 
 public class NetHelper : MonoBehaviour {
+
+	public string host = "http://192.168.1.113";
+
     void Start() {
         
     }
@@ -15,7 +18,7 @@ public class NetHelper : MonoBehaviour {
     }
 
 	public string Post(string url, string json) {
-		HttpWebRequest requset = HttpWebRequest.Create(url) as HttpWebRequest;
+		HttpWebRequest requset = HttpWebRequest.Create(host + url) as HttpWebRequest;
 		requset.Method = "POST";
 		requset.ContentType = "application/json";
 
