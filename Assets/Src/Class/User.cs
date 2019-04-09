@@ -14,7 +14,7 @@ public class User {
 [Serializable]
 public class SignInResult {
 	public int error;
-	public User user;
+	public User data;
 }
 
 [Serializable]

@@ -33,4 +33,8 @@ public class LoginStatus {
 		user.username = user.password = "";
 		user.nickname = "null";
 	}
+
+	public User GetUser() {
+		return user;
+	}
 }

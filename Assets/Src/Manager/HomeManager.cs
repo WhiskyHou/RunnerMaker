@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class HomeManager : MonoBehaviour {
+
+	public Text nicknameText;
+
 	void Start() {
 		//Task task = LoadGameScene();
+
+		nicknameText.text = "欢迎： " + LoginStatus.Instance.GetUser().nickname;
 	}
 
 	void Update() {
