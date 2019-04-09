@@ -65,6 +65,7 @@ public class MapBuilder : MonoBehaviour {
 	}
 
 	public void ParseJson() {
+		Debug.Log(res);
 		data = JsonUtility.FromJson<Maps>(res);
 		data.maps[0].Log();
 		Build();
@@ -77,6 +78,11 @@ public class MapBuilder : MonoBehaviour {
 		player = Instantiate(player);
 		player.transform.Translate(new Vector3(currentMap.startPos.x, currentMap.startPos.y, 0));
 		player.name = player.tag = "Player";
+
+		GameObject end = Resources.Load("prefab/end") as GameObject;
+		end = Instantiate(end);
+		end.transform.Translate(new Vector3(currentMap.endPos.x, currentMap.endPos.y, 0));
+		end.name = end.tag = "End";
 
 		List<NodeInfo> nodes = currentMap.nodeInfo;
 		nodes.ForEach((item) => {

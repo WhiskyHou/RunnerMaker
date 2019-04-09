@@ -22,7 +22,7 @@ public class FileHelper : MonoBehaviour {
 
 	public void WriteToFile(string path, string data) {
 		try {
-			File.WriteAllText(path, data, Encoding.UTF8);
+			File.WriteAllText(path, data, new UTF8Encoding(false));
 		} catch (IOException error) {
 			Debug.Log("=== FileHelper Error ===\n" + error);
 			throw error;
@@ -31,7 +31,7 @@ public class FileHelper : MonoBehaviour {
 
 	public void WriteToFileAsync(string path, string data) {
 		ThreadStart threadStart = new ThreadStart(() => {
-			File.WriteAllText(path, data, Encoding.UTF8);
+			File.WriteAllText(path, data, new UTF8Encoding(false));
 		});
 		Thread thread = new Thread(threadStart);
 		thread.Start();

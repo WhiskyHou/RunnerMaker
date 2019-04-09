@@ -46,4 +46,11 @@ public class Position {
 public class NodeInfo {
 	public Position pos;
 	public string prefabType;
+	//public List<Property> properties;
+}
+
+[Serializable]
+public class Property {
+	public string name;
+	public int value;
 }

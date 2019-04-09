@@ -6,6 +6,8 @@ public class EditorManager : MonoBehaviour {
 
 	public GameObject[] prefabs = new GameObject[10];
 
+	public Dictionary<string, GameObject> prefabsD = new Dictionary<string, GameObject>();
+
 	public GameObject line;
 
 	public FileHelper fileHelper;
@@ -17,6 +19,17 @@ public class EditorManager : MonoBehaviour {
 	private List<GameObject> list = new List<GameObject>();
 
 	void Start() {
+		prefabsD.Add("Stone", prefabs[1]);
+		prefabsD.Add("Ice", prefabs[2]);
+		prefabsD.Add("Brick", prefabs[3]);
+		prefabsD.Add("Spring", prefabs[4]);
+		prefabsD.Add("Sword", prefabs[5]);
+		prefabsD.Add("Cannon", prefabs[6]);
+		prefabsD.Add("Killer", prefabs[7]);
+		prefabsD.Add("Player", prefabs[8]);
+		prefabsD.Add("End", prefabs[9]);
+
+
 		map = JsonUtility.FromJson<Map>(OpenMap.Instance.mapData);
 		BuildMap();
 	}
@@ -34,7 +47,7 @@ public class EditorManager : MonoBehaviour {
 				CreateObj(x, y);
 			}
 		} else {
-
+			
 		}
 	}
 
@@ -70,14 +83,15 @@ public class EditorManager : MonoBehaviour {
 		}
 
 		// 2. 创建起点和终点
-		currentObject = prefabs[7];
-		CreateObj(map.startPos.x, map.startPos.y);
 		currentObject = prefabs[8];
+		CreateObj(map.startPos.x, map.startPos.y);
+		currentObject = prefabs[9];
 		CreateObj(map.endPos.x, map.endPos.y);
 
 		// 3. 创建模块
 		currentObject = prefabs[1];
 		map.nodeInfo.ForEach((item) => {
+			currentObject = prefabsD[item.prefabType];
 			CreateObj(item.pos.x, item.pos.y);
 		});
 
@@ -131,7 +145,7 @@ public class EditorManager : MonoBehaviour {
 
 		//fileHelper.WriteToFile(JsonUtility.ToJson(map));
 		//fileHelper.data = JsonUtility.ToJson(map);
-		fileHelper.WriteToFileAsync(@"Assets/Config/out.json", JsonUtility.ToJson(map));
+		fileHelper.WriteToFile(@"Assets/Config/out.json", JsonUtility.ToJson(map));
 
 		NetHelper net = GetComponent<NetHelper>();
 		string result = net.Post("/", JsonUtility.ToJson(map));

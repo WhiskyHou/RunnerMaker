@@ -50,7 +50,7 @@ public class OpenMap {
 		//mapData = File.ReadAllText(@"Assets/Config/" + filename + ".json");
 
 		// windows build
-		mapData = File.ReadAllText(@"config/out.json");
+		mapData = File.ReadAllText(@"assets/config/out.json");
 	}
 
 }
