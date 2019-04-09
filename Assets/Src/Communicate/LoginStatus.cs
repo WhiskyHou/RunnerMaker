@@ -21,10 +21,16 @@ public class LoginStatus {
 		user.nickname = "null";
 	}
 
-	public void SetUser(User u) {
+	public void Login(User u) {
 		user.uid = u.uid;
 		user.username = u.username;
 		user.password = u.password;
 		user.nickname = u.nickname;
+	}
+
+	public void Logout() {
+		user.uid = -1;
+		user.username = user.password = "";
+		user.nickname = "null";
 	}
 }

@@ -38,7 +38,7 @@ public class SignInManager : MonoBehaviour {
 
 		if (result.error == 0) {
 			Debug.Log("=== Sign in ===\n登录成功");
-			LoginStatus.Instance.SetUser(result.user);
+			LoginStatus.Instance.Login(result.user);
 		} else if (result.error == 1) {
 			Debug.Log("=== Sign in ===\n密码错误");
 		} else if (result.error == 2) {

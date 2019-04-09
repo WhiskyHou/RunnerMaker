@@ -9,15 +9,24 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/EditorScene.unity
-    guid: 8696db0ce5cae0f42a365428f6dad694
-  - enabled: 0
+    path: Assets/Scenes/SignInScene.unity
+    guid: e476227c994d0fe45a3a2b9a2a87d186
+  - enabled: 1
     path: Assets/Scenes/HomeScene.unity
     guid: 69a45b1569115de4ab32809909e0d3d5
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2fe4776185474b74e8da8ac5ef329a01
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MyCreationScene.unity
     guid: 09174b87433058c418e51055473e9712
+  - enabled: 1
+    path: Assets/Scenes/MapListScene.unity
+    guid: 54bb13e2dfc97ee45af6f6b75806a552
+  - enabled: 1
+    path: Assets/Scenes/RankScene.unity
+    guid: d54b63c93681494449f19d9046bc3d9d
+  - enabled: 1
+    path: Assets/Scenes/EditorScene.unity
+    guid: 8696db0ce5cae0f42a365428f6dad694
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2fe4776185474b74e8da8ac5ef329a01
   m_configObjects: {}

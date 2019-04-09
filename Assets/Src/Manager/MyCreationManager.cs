@@ -1,19 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MyCreationManager : MonoBehaviour {
 
 	public GameObject buttonGroup;
 	public GameObject newMapWindow;
 
-    void Start() {
-        
-    }
+	void Start() {
+		
+	}
 
-    void Update() {
-        
-    }
+	void Update() {
+
+	}
+
+	public void OnClickBack() {
+		SceneManager.LoadScene("HomeScene");
+	}
 
 	public void OnClickButtonGroup(string button) {
 		switch (button) {
