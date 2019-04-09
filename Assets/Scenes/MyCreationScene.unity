@@ -752,6 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c951d9cad0da2e4a8ad0c46d113c880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonGroup: {fileID: 1322677303}
   newMapWindow: {fileID: 558054129}
 --- !u!4 &390898820
 Transform:
@@ -761,7 +762,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390898818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 764.94696, y: 301.41418, z: -14.335262}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1063,7 +1064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &558054130
 MonoBehaviour:
   m_ObjectHideFlags: 0

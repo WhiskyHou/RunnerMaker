@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MyCreationManager : MonoBehaviour {
 
+	public GameObject buttonGroup;
 	public GameObject newMapWindow;
 
     void Start() {
@@ -29,5 +30,9 @@ public class MyCreationManager : MonoBehaviour {
 			default:
 				break;
 		}
+	}
+
+	public void SetMainUiActive(bool status) {
+
 	}
 }

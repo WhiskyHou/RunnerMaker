@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EditorManager : MonoBehaviour {
 
-	public GameObject[] prefabs = new GameObject[9];
+	public GameObject[] prefabs = new GameObject[10];
 
 	public GameObject line;
 
