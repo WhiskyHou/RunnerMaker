@@ -487,7 +487,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapname: {fileID: 1178236026}
-  nickname: init
 --- !u!114 &257870563
 MonoBehaviour:
   m_ObjectHideFlags: 0
