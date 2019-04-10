@@ -1,5 +1,7 @@
 #.gitignore
 
+*.sh
+
 # Visual Studio cache directory
 .vs/
 
