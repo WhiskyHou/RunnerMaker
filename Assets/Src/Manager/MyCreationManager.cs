@@ -18,6 +18,7 @@ public class MyCreationManager : MonoBehaviour {
 	public InputField heightText;
 
 	public FileHelper fileHelper;
+	public NetHelper netHelper;
 
 	private MyMap currentMap = null;
 
@@ -39,9 +40,14 @@ public class MyCreationManager : MonoBehaviour {
 				newMapWindow.SetActive(true);
 				break;
 			case "remove":
-				newMapWindow.SetActive(false);
+				if (currentMap) {
+					fileHelper.RemoveFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.mapname.text);
+				}
 				break;
 			case "upload":
+				if (currentMap) {
+					UploadMap();
+				}
 				break;
 			case "edit":
 				if (currentMap) {
@@ -75,11 +81,12 @@ public class MyCreationManager : MonoBehaviour {
 			toast.GetComponent<Toast>().Set("不符合规范", 2000);
 		} else {
 			Map map = new Map {
-				nickName = nameText.text,
+				mid = -1,
+				uid = LoginStatus.Instance.GetUser().uid,
 				createrName = LoginStatus.Instance.GetUser().nickname,
+				nickName = nameText.text,
 				width = int.Parse(widthText.text),
 				height = int.Parse(heightText.text),
-				id = -1,
 				countDown = 0
 			};
 
@@ -117,6 +124,10 @@ public class MyCreationManager : MonoBehaviour {
 
 			index++;
 		});
+	}
+
+	public void UploadMap() {
+		//netHelper.Post("/uploadMap", )
 	}
 }
 

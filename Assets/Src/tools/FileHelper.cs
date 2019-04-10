@@ -36,4 +36,10 @@ public class FileHelper : MonoBehaviour {
 		Thread thread = new Thread(threadStart);
 		thread.Start();
 	}
+
+	public void RemoveFile(string path) {
+		if (File.Exists(path)) {
+			File.Delete(path);
+		}
+	}
 }

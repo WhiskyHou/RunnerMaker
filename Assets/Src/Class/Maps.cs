@@ -14,7 +14,8 @@ public class Maps {
 
 [Serializable]
 public class Map {
-	public int id;
+	public int mid;
+	public int uid;
 	public string nickName;
 	public string createrName;
 
@@ -32,7 +33,7 @@ public class Map {
 	public List<NodeInfo> nodeInfo;
 
 	public void Log() {
-		Debug.Log("===== Map =====\n" + "id:" + id + " nickName:" + nickName + " creater:" + createrName + " countDown:" + countDown + " width:" + width + " height:" + height + " nodeInfoLength:" + nodeInfo.Count);
+		Debug.Log("===== Map =====\n" + "id:" + mid + " nickName:" + nickName + " creater:" + createrName + " countDown:" + countDown + " width:" + width + " height:" + height + " nodeInfoLength:" + nodeInfo.Count);
 	}
 }
 
