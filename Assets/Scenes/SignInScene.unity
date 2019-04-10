@@ -2218,7 +2218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05ec1a170e3d864dbcda3b02784e9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  host: http://192.168.1.113:8686
+  host: http://localhost:8686
 --- !u!1 &1874744785
 GameObject:
   m_ObjectHideFlags: 0
