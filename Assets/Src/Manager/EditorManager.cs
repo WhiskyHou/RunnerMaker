@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EditorManager : MonoBehaviour {
 
 	public GameObject[] prefabs = new GameObject[10];
-
 	public Dictionary<string, GameObject> prefabsD = new Dictionary<string, GameObject>();
+
+	public InputField countDown;
 
 	public GameObject line;
 
@@ -38,6 +41,14 @@ public class EditorManager : MonoBehaviour {
 
 	}
 
+	public void OnClickButton(int index) {
+		ClickNumber(index);
+	}
+
+	public void OnClickSaveButton() {
+		ClickFuncKey("Save");
+	}
+
 	public void ClickMouse(int x, int y, bool isLeft) {
 		if (isLeft) {
 			//(currentObject == null) ? RemoveObj(x, y) : CreateObj(x,y);
@@ -61,6 +72,7 @@ public class EditorManager : MonoBehaviour {
 		switch (key) {
 			case "Save":
 				SaveToFile();
+				SceneManager.LoadScene("MyCreationScene");
 				break;
 			default:
 				break;
@@ -82,11 +94,12 @@ public class EditorManager : MonoBehaviour {
 			render.SetPosition(1, new Vector3(map.width + 0.5f, i + 0.5f, 0.1f));
 		}
 
-		// 2. 创建起点和终点
+		// 2. 创建起点 和 终点 和 倒计时
 		currentObject = prefabs[8];
 		CreateObj(map.startPos.x, map.startPos.y);
 		currentObject = prefabs[9];
 		CreateObj(map.endPos.x, map.endPos.y);
+		countDown.text = map.countDown.ToString();
 
 		// 3. 创建模块
 		currentObject = prefabs[1];
@@ -121,6 +134,8 @@ public class EditorManager : MonoBehaviour {
 	private void SaveToFile() {
 		Debug.Log("=== Save List's length: " + list.Count);
 
+		map.countDown = int.Parse(countDown.text);
+
 		map.nodeInfo.Clear();
 		list.ForEach((item) => {
 			Vector3 pos = item.transform.position;
@@ -143,12 +158,6 @@ public class EditorManager : MonoBehaviour {
 
 		map.Log();
 
-		//fileHelper.WriteToFile(JsonUtility.ToJson(map));
-		//fileHelper.data = JsonUtility.ToJson(map);
-		fileHelper.WriteToFile(@"Assets/Config/out.json", JsonUtility.ToJson(map));
-
-		NetHelper net = GetComponent<NetHelper>();
-		string result = net.Post("/", JsonUtility.ToJson(map));
-		Debug.Log("=== net result: " + result);
+		fileHelper.WriteToFile(OpenMap.Instance.filePath, JsonUtility.ToJson(map));
 	}
 }

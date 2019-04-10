@@ -1,1 +1,176 @@
-{"id":-1,"nickName":"openmap","createrName":"houyi open","goodCount":0,"diffCount":0,"passCount":0,"trysCount":0,"countDown":120,"width":10,"height":10,"startPos":{"x":2,"y":2},"endPos":{"x":4,"y":9},"nodeInfo":[{"pos":{"x":1,"y":1},"prefabType":"Stone"},{"pos":{"x":2,"y":1},"prefabType":"Stone"},{"pos":{"x":3,"y":1},"prefabType":"Stone"},{"pos":{"x":1,"y":5},"prefabType":"Stone"},{"pos":{"x":2,"y":5},"prefabType":"Stone"},{"pos":{"x":3,"y":5},"prefabType":"Stone"},{"pos":{"x":7,"y":3},"prefabType":"Stone"},{"pos":{"x":8,"y":3},"prefabType":"Stone"},{"pos":{"x":9,"y":3},"prefabType":"Stone"},{"pos":{"x":4,"y":1},"prefabType":"Stone"},{"pos":{"x":1,"y":8},"prefabType":"Stone"},{"pos":{"x":2,"y":8},"prefabType":"Stone"},{"pos":{"x":3,"y":8},"prefabType":"Stone"},{"pos":{"x":4,"y":8},"prefabType":"Stone"},{"pos":{"x":8,"y":6},"prefabType":"Brick"},{"pos":{"x":9,"y":6},"prefabType":"Brick"},{"pos":{"x":10,"y":3},"prefabType":"Ice"}]}
+{
+    "id": -1,
+    "nickName": "测试地图2",
+    "createrName": "XX昵称",
+    "goodCount": 0,
+    "diffCount": 0,
+    "passCount": 0,
+    "trysCount": 0,
+    "countDown": 0,
+    "width": 12,
+    "height": 23,
+    "startPos": {
+        "x": 3,
+        "y": 2
+    },
+    "endPos": {
+        "x": 5,
+        "y": 12
+    },
+    "nodeInfo": [
+        {
+            "pos": {
+                "x": 1,
+                "y": 1
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 2,
+                "y": 1
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 3,
+                "y": 1
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 4,
+                "y": 1
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 5,
+                "y": 1
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 6,
+                "y": 1
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 7,
+                "y": 1
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 1,
+                "y": 2
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 1,
+                "y": 3
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 1,
+                "y": 4
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 8,
+                "y": 4
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 9,
+                "y": 4
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 10,
+                "y": 4
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 11,
+                "y": 4
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 12,
+                "y": 4
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 10,
+                "y": 7
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 11,
+                "y": 7
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 5,
+                "y": 11
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 6,
+                "y": 11
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 7,
+                "y": 11
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 10,
+                "y": 10
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 11,
+                "y": 10
+            },
+            "prefabType": "Brick"
+        }
+    ]
+}

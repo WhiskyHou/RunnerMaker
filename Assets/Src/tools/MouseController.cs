@@ -45,9 +45,5 @@ public class MouseController : MonoBehaviour {
 		} else if (Input.GetKeyDown (KeyCode.Alpha0)) {
 			manager.ClickNumber (0);
 		}
-
-		if (Input.GetKeyDown (KeyCode.RightShift)) {
-			manager.ClickFuncKey ("Save");
-		}
 	}
 }

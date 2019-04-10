@@ -25,9 +25,11 @@ public class OpenMap {
 	//public Position endPos = new Position();
 	//public List<NodeInfo> nodeInfo = new List<NodeInfo>();
 
-	public Map map = new Map();
+	//public Map map = new Map();
 
 	public string mapData;
+
+	public string filePath;
 
 
 	// constructor
@@ -43,14 +45,17 @@ public class OpenMap {
 
 		//mapData = JsonUtility.ToJson(map);
 
-		LoadMapFile("out");
+		//LoadMapFile("out");
 	}
 
 	public void LoadMapFile(string filename) {
 		//mapData = File.ReadAllText(@"Assets/Config/" + filename + ".json");
 
 		// windows build
-		mapData = File.ReadAllText(@"assets/config/out.json");
+		//mapData = File.ReadAllText(@"assets/config/out.json");
+
+		filePath = "Data/" + LoginStatus.Instance.GetUser().username + "/" + filename;
+		mapData = File.ReadAllText(filePath);
 	}
 
 }
