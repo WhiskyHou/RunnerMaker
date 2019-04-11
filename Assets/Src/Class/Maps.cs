@@ -55,3 +55,17 @@ public class Property {
 	public string name;
 	public int value;
 }
+
+
+// 获取所有地图的基本信息
+[Serializable]
+public class GetMapsResult {
+	public int error;
+	public List<MapInfo> maps;
+}
+[Serializable]
+public class MapInfo {
+	public int mid;
+	public int uid;
+	public string nickname;
+}

@@ -41,7 +41,7 @@ public class MyCreationManager : MonoBehaviour {
 				break;
 			case "remove":
 				if (currentMap) {
-					fileHelper.RemoveFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.mapname.text);
+					fileHelper.RemoveFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
 				}
 				break;
 			case "upload":
@@ -51,7 +51,7 @@ public class MyCreationManager : MonoBehaviour {
 				break;
 			case "edit":
 				if (currentMap) {
-					OpenMap.Instance.LoadMapFile(currentMap.mapname.text);
+					OpenMap.Instance.LoadMapFile(currentMap.fileName);
 					SceneManager.LoadScene("EditorScene");
 				}
 				break;
@@ -106,10 +106,11 @@ public class MyCreationManager : MonoBehaviour {
 
 	public void OnClickChooseMap(MyMap map) {
 		currentMap = map;
-		Debug.Log("=== currentmap: " + currentMap.mapname);
+		Debug.Log("=== currentmap: " + currentMap.fileName);
 	}
 
 	public void CreateMapList() {
+		// TODO 后面要做成翻页的
 		string path = "Data/" + LoginStatus.Instance.GetUser().username + "/";
 		DirectoryInfo dirInfo = new DirectoryInfo(path);
 		List<FileInfo> infoList = new List<FileInfo>(dirInfo.GetFiles());
@@ -127,7 +128,8 @@ public class MyCreationManager : MonoBehaviour {
 	}
 
 	public void UploadMap() {
-		//netHelper.Post("/uploadMap", )
+		string data = fileHelper.ReadFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
+		netHelper.Post("/uploadMap", data);
 	}
 }
 

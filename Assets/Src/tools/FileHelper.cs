@@ -20,6 +20,15 @@ public class FileHelper : MonoBehaviour {
         
     }
 
+	public string ReadFile(string path) {
+		try {
+			string result = File.ReadAllText(path);
+			return result;
+		} catch (IOException error) {
+			throw error;
+		}
+	}
+
 	public void WriteToFile(string path, string data) {
 		try {
 			File.WriteAllText(path, data, new UTF8Encoding(false));

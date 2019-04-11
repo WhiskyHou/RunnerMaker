@@ -11,10 +11,11 @@ public class MapBuilder : MonoBehaviour {
 
 	private string res = "";
 
-	private Maps data;
+	private Map data;
 
 	void Awake() {
-		LoadFromLocal();		// 本地读取
+		LoadFromCommunicate();
+		//LoadFromLocal();		// 本地读取
 		//LoadFromNetSync();		// 网络同步读取
 		//LoadFromNetAsync();		// 网络异步读取
 	}
@@ -26,6 +27,11 @@ public class MapBuilder : MonoBehaviour {
     void Update() {
         
     }
+
+	public void LoadFromCommunicate() {
+		res = JsonUtility.ToJson(EnterGame.Instance.map);
+		ParseJson();
+	}
 
 	public void LoadFromLocal() {
 		FileStream fs = File.OpenRead("Assets/Config/maps.json");
@@ -66,13 +72,13 @@ public class MapBuilder : MonoBehaviour {
 
 	public void ParseJson() {
 		Debug.Log(res);
-		data = JsonUtility.FromJson<Maps>(res);
-		data.maps[0].Log();
+		data = JsonUtility.FromJson<Map>(res);
+		//data.maps[0].Log();
 		Build();
 	}
 
 	public void Build() {
-		Map currentMap = data.maps[0];
+		Map currentMap = data;
 
 		GameObject player = Resources.Load("prefab/player") as GameObject;
 		player = Instantiate(player);
