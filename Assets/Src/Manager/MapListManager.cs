@@ -27,7 +27,7 @@ public class MapListManager : MonoBehaviour {
 			List<MapInfo> maps = new List<MapInfo>(result.maps);
 			maps.ForEach((obj) => {
 				GameObject map = Instantiate(Resources.Load("prefab/GameMap") as GameObject);
-				map.transform.SetParent(GameObject.Find("Canvas").transform, false);
+				map.transform.SetParent(GameObject.Find("MapList").transform, false);
 				map.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0f, -80f * index, 0f);
 				map.GetComponent<GameMap>().Init(obj.mid, obj.nickname, this);
 				index++;
