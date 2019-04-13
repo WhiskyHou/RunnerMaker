@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class NetHelper : MonoBehaviour {
 
-	private string host = "http://192.168.1.113";
+	private string host = "http://localhost:8686";
 
     void Start() {
         

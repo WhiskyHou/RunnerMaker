@@ -76,10 +76,11 @@ public class MapBuilder : MonoBehaviour {
 		Debug.Log(res);
 		data = JsonUtility.FromJson<Map>(res);
 		//data.maps[0].Log();
-		Build();
+		BuildMap();
+		BuildBound();
 	}
 
-	public void Build() {
+	public void BuildMap() {
 		Map currentMap = data;
 
 		GameObject player = Resources.Load("prefab/player") as GameObject;
@@ -99,5 +100,27 @@ public class MapBuilder : MonoBehaviour {
 			node.transform.Translate(new Vector3(item.pos.x, item.pos.y, 0));
 			node.name = node.tag = item.prefabType;
 		});
+	}
+
+	public void BuildBound() {
+		int boundSize = 5;
+		GameObject killerPrefab = Resources.Load("prefab/killer") as GameObject;
+		float width = data.width;
+		float height = data.height;
+
+		// 横向边界
+		for (int i = 1 - boundSize; i <= width + boundSize; i++) {
+			GameObject killer1 = Instantiate(killerPrefab);
+			killer1.transform.position = new Vector3(i, 1 - boundSize, 0);
+			GameObject killer2 = Instantiate(killerPrefab);
+			killer2.transform.position = new Vector3(i, height + boundSize, 0);
+		}
+		// 纵向边界
+		for(int i = 2 - boundSize; i < height + boundSize; i++) {
+			GameObject killer1 = Instantiate(killerPrefab);
+			killer1.transform.position = new Vector3(1 - boundSize, i, 0);
+			GameObject killer2 = Instantiate(killerPrefab);
+			killer2.transform.position = new Vector3(width + boundSize, i, 0);
+		}
 	}
 }
