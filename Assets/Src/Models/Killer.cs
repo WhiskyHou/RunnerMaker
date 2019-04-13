@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Killer : MonoBehaviour {
+
+	private GameManager manager;
+
     void Start() {
         
     }
@@ -13,7 +16,11 @@ public class Killer : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		if(collision.gameObject.tag == "Player") {
-			// ... player die
+			manager.GameOver();
 		}
+	}
+
+	public void Init(GameManager manager) {
+		this.manager = manager;
 	}
 }

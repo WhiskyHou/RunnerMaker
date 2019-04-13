@@ -81,19 +81,27 @@ public class MapBuilder : MonoBehaviour {
 	}
 
 	public void BuildMap() {
-		Map currentMap = data;
 
+		// 创建计时器
+		GameObject timer = Resources.Load("prefab/Timer") as GameObject;
+		timer = Instantiate(timer);
+		timer.GetComponent<Timer>().Init(GetComponent<GameManager>(), data.countDown);
+
+		// 创建人物起点
 		GameObject player = Resources.Load("prefab/player") as GameObject;
 		player = Instantiate(player);
-		player.transform.Translate(new Vector3(currentMap.startPos.x, currentMap.startPos.y, 0));
+		player.transform.Translate(new Vector3(data.startPos.x, data.startPos.y, 0));
 		player.name = player.tag = "Player";
 
+		// 创建终点
 		GameObject end = Resources.Load("prefab/end") as GameObject;
 		end = Instantiate(end);
-		end.transform.Translate(new Vector3(currentMap.endPos.x, currentMap.endPos.y, 0));
+		end.transform.Translate(new Vector3(data.endPos.x, data.endPos.y, 0));
 		end.name = end.tag = "End";
+		end.GetComponent<End>().Init(GetComponent<GameManager>());
 
-		List<NodeInfo> nodes = currentMap.nodeInfo;
+		// 创建各个模块
+		List<NodeInfo> nodes = data.nodeInfo;
 		nodes.ForEach((item) => {
 			GameObject node = Resources.Load("prefab/" + item.prefabType) as GameObject;
 			node = Instantiate(node);
@@ -114,13 +122,17 @@ public class MapBuilder : MonoBehaviour {
 			killer1.transform.position = new Vector3(i, 1 - boundSize, 0);
 			GameObject killer2 = Instantiate(killerPrefab);
 			killer2.transform.position = new Vector3(i, height + boundSize, 0);
+			killer1.GetComponent<Killer>().Init(GetComponent<GameManager>());
+			killer2.GetComponent<Killer>().Init(GetComponent<GameManager>());
 		}
 		// 纵向边界
-		for(int i = 2 - boundSize; i < height + boundSize; i++) {
+		for (int i = 2 - boundSize; i < height + boundSize; i++) {
 			GameObject killer1 = Instantiate(killerPrefab);
 			killer1.transform.position = new Vector3(1 - boundSize, i, 0);
 			GameObject killer2 = Instantiate(killerPrefab);
 			killer2.transform.position = new Vector3(width + boundSize, i, 0);
+			killer1.GetComponent<Killer>().Init(this.GetComponent<GameManager>());
+			killer2.GetComponent<Killer>().Init(this.GetComponent<GameManager>());
 		}
 	}
 }
