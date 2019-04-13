@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class MapBuilder : MonoBehaviour {
 
-	public string jsonPath;
-
 	private string res = "";
 
 	private Map data;
@@ -27,6 +25,10 @@ public class MapBuilder : MonoBehaviour {
     void Update() {
         
     }
+
+	public Map GetMap() {
+		return data;
+	}
 
 	public void LoadFromCommunicate() {
 		res = JsonUtility.ToJson(EnterGame.Instance.map);

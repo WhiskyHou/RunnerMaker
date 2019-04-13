@@ -1,21 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	public int __MAX_FPS;
+	public Text countDownText;
 
-	private FpsLog fpsLog = new FpsLog();
+	private Map map;
+
+	private float startTime;
 
     void Start() {
-		Application.targetFrameRate = __MAX_FPS;    
+		map = GetComponent<MapBuilder>().GetMap();
     }
 
     void Update() {
-		float deltaTime = Time.deltaTime;
+		float delta = Time.deltaTime;
 
-		// fpsLog.Update(deltaTime);
+		startTime += delta;
+		countDownText.text = (map.countDown - (int)Math.Floor(startTime)).ToString() + " s";
     }
 }

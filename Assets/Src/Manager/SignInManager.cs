@@ -23,6 +23,8 @@ public class SignInManager : MonoBehaviour {
 	private string nickname = "";
 
 	void Start() {
+		Application.targetFrameRate = 120;
+
 		ResetInput();
 	}
 
