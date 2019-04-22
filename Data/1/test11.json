@@ -1,0 +1,380 @@
+{
+    "mid": -1,
+    "uid": 12,
+    "nickName": "test11",
+    "createrName": "1",
+    "goodCount": 0,
+    "diffCount": 0,
+    "passCount": 0,
+    "trysCount": 0,
+    "countDown": 100,
+    "width": 400,
+    "height": 200,
+    "startPos": {
+        "x": 3,
+        "y": 9
+    },
+    "endPos": {
+        "x": 10,
+        "y": 9
+    },
+    "nodeInfo": [
+        {
+            "pos": {
+                "x": 3,
+                "y": 4
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 4,
+                "y": 4
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 5,
+                "y": 4
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 6,
+                "y": 4
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 7,
+                "y": 4
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 3,
+                "y": 8
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 4,
+                "y": 8
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 5,
+                "y": 8
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 6,
+                "y": 8
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 8,
+                "y": 8
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 7,
+                "y": 8
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 9,
+                "y": 8
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 10,
+                "y": 8
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 12,
+                "y": 10
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 11,
+                "y": 11
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 9,
+                "y": 11
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 10,
+                "y": 12
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 8,
+                "y": 14
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 9,
+                "y": 14
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 9,
+                "y": 13
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 12,
+                "y": 15
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 6,
+                "y": 16
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 9,
+                "y": 16
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 14,
+                "y": 16
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 16,
+                "y": 13
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 19,
+                "y": 14
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 19,
+                "y": 11
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 14,
+                "y": 11
+            },
+            "prefabType": "Ice"
+        },
+        {
+            "pos": {
+                "x": 15,
+                "y": 17
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 18,
+                "y": 20
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 16,
+                "y": 20
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 14,
+                "y": 20
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 13,
+                "y": 20
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 8,
+                "y": 22
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 10,
+                "y": 22
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 14,
+                "y": 22
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 19,
+                "y": 22
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 21,
+                "y": 22
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 17,
+                "y": 22
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 19,
+                "y": 21
+            },
+            "prefabType": "Brick"
+        },
+        {
+            "pos": {
+                "x": 21,
+                "y": 20
+            },
+            "prefabType": "Spring"
+        },
+        {
+            "pos": {
+                "x": 19,
+                "y": 19
+            },
+            "prefabType": "Spring"
+        },
+        {
+            "pos": {
+                "x": 20,
+                "y": 18
+            },
+            "prefabType": "Spring"
+        },
+        {
+            "pos": {
+                "x": 22,
+                "y": 18
+            },
+            "prefabType": "Spring"
+        },
+        {
+            "pos": {
+                "x": 11,
+                "y": 16
+            },
+            "prefabType": "Sword"
+        },
+        {
+            "pos": {
+                "x": 10,
+                "y": 23
+            },
+            "prefabType": "Cannon"
+        },
+        {
+            "pos": {
+                "x": 7,
+                "y": 14
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 6,
+                "y": 14
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 5,
+                "y": 14
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 4,
+                "y": 14
+            },
+            "prefabType": "Stone"
+        },
+        {
+            "pos": {
+                "x": 3,
+                "y": 14
+            },
+            "prefabType": "Stone"
+        }
+    ]
+}

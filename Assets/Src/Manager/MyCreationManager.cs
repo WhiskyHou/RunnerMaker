@@ -9,6 +9,8 @@ using System;
 public class MyCreationManager : MonoBehaviour {
 
 	public GameObject mapListGroup;
+	public int mapListGroupLength;
+	public Text mapListPageText;
 	public GameObject mapUpGroup;
 	public GameObject buttonGroup;
 	public GameObject newMapWindow;
@@ -20,10 +22,16 @@ public class MyCreationManager : MonoBehaviour {
 	public FileHelper fileHelper;
 	public NetHelper netHelper;
 
+	private int mapListPageCount = 0;
+	private int currentPageindex = 0;
+
+	private List<FileInfo> mapListInfo;
+
 	private MyMap currentMap = null;
 
 	void Start() {
-		CreateMapList();
+		ReadFolderFile();
+		BuildMapList();
 	}
 
 	void Update() {
@@ -109,22 +117,60 @@ public class MyCreationManager : MonoBehaviour {
 		Debug.Log("=== currentmap: " + currentMap.fileName);
 	}
 
-	public void CreateMapList() {
-		// TODO 后面要做成翻页的
+	public void OnClickPage(int type) {
+		if (type == 0) {
+			currentPageindex = currentPageindex - 1 < 0 ? 0 : currentPageindex - 1;
+		} else if (type == 1) {
+			currentPageindex = currentPageindex + 1 > mapListPageCount - 1 ? mapListPageCount - 1 : currentPageindex + 1;
+		}
+
+		BuildMapList();
+	}
+
+	public void ReadFolderFile() {
+		// 读取文件夹下文件列表
 		string path = "Data/" + LoginStatus.Instance.GetUser().username + "/";
 		DirectoryInfo dirInfo = new DirectoryInfo(path);
-		List<FileInfo> infoList = new List<FileInfo>(dirInfo.GetFiles());
-		infoList.Sort(new Comp());
+		mapListInfo = new List<FileInfo>(dirInfo.GetFiles());
+		mapListInfo.Sort(new Comp());
+
+		// 计算页数
+		mapListPageCount = (int) Math.Ceiling((float) mapListInfo.Count / mapListGroupLength);
+
+		// TODO 后面要做成翻页的
+		//int index = 0;
+		//mapListInfo.ForEach((FileInfo obj) => {
+		//	GameObject mymap = Instantiate(Resources.Load("prefab/MyMap") as GameObject);
+		//	mymap.transform.SetParent(mapListGroup.transform, true);
+		//	mymap.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0f, -60f * index, 0f);
+		//	mymap.GetComponent<MyMap>().Init(obj.Name, this);
+
+		//	index++;
+		//});
+	}
+
+	public void BuildMapList() {
+		// 清空 list 节点下的所有子节点
+		Transform[] children = mapListGroup.transform.GetComponentsInChildren<Transform>();
+		foreach(Transform child in children) {
+			if (!child.Equals(mapListGroup.transform)) {
+				Destroy(child.gameObject);
+			}
+		}
+
+		// 给 list 节点添加对应的子项
 		int index = 0;
-		infoList.ForEach((FileInfo obj) => {
+		for (int i = currentPageindex * mapListGroupLength; i < Math.Min(mapListInfo.Count, (currentPageindex + 1) * mapListGroupLength); i++) {
 			GameObject mymap = Instantiate(Resources.Load("prefab/MyMap") as GameObject);
 			mymap.transform.SetParent(mapListGroup.transform, true);
 			mymap.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0f, -60f * index, 0f);
-
-			mymap.GetComponent<MyMap>().Init(obj.Name, this);
+			mymap.GetComponent<MyMap>().Init(mapListInfo[i].Name, this);
 
 			index++;
-		});
+		}
+
+		// 更新页码
+		mapListPageText.text = (currentPageindex + 1).ToString() + " / " + mapListPageCount.ToString();
 	}
 
 	public void UploadMap() {
