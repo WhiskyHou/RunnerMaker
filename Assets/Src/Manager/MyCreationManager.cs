@@ -136,17 +136,6 @@ public class MyCreationManager : MonoBehaviour {
 
 		// 计算页数
 		mapListPageCount = (int) Math.Ceiling((float) mapListInfo.Count / mapListGroupLength);
-
-		// TODO 后面要做成翻页的
-		//int index = 0;
-		//mapListInfo.ForEach((FileInfo obj) => {
-		//	GameObject mymap = Instantiate(Resources.Load("prefab/MyMap") as GameObject);
-		//	mymap.transform.SetParent(mapListGroup.transform, true);
-		//	mymap.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0f, -60f * index, 0f);
-		//	mymap.GetComponent<MyMap>().Init(obj.Name, this);
-
-		//	index++;
-		//});
 	}
 
 	public void BuildMapList() {
