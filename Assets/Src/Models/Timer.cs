@@ -32,4 +32,8 @@ public class Timer : MonoBehaviour {
 		this.manager = manager;
 		this.countDown = countDown;
 	}
+
+	public int GetDurringTime() {
+		return (int)Math.Ceiling(duringTime);
+	}
 }

@@ -86,6 +86,7 @@ public class MapBuilder : MonoBehaviour {
 		GameObject timer = Resources.Load("prefab/Timer") as GameObject;
 		timer = Instantiate(timer);
 		timer.GetComponent<Timer>().Init(GetComponent<GameManager>(), data.countDown);
+		timer.name = "Timer";
 
 		// 创建人物起点
 		GameObject player = Resources.Load("prefab/player") as GameObject;
