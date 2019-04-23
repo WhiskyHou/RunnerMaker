@@ -18,7 +18,7 @@ public class MyMap : MonoBehaviour {
 	}
 
 	public void Init(string name, MyCreationManager manager) {
-		mapname.text = name.Split('.')[0];
+		mapname.text = name;
 		fileName = name;
 		this.manager = manager;
 	}

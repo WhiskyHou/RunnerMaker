@@ -8,10 +8,16 @@ using System;
 
 public class MyCreationManager : MonoBehaviour {
 
+	public GameObject mapList;
 	public GameObject mapListGroup;
 	public int mapListGroupLength;
 	public Text mapListPageText;
+
+	public GameObject mapUp;
 	public GameObject mapUpGroup;
+	public int mapUpGroupLength;
+	public Text mapUpPageText;
+
 	public GameObject buttonGroup;
 	public GameObject newMapWindow;
 
@@ -22,16 +28,25 @@ public class MyCreationManager : MonoBehaviour {
 	public FileHelper fileHelper;
 	public NetHelper netHelper;
 
+	private bool isMapListState = true;
+
 	private int mapListPageCount = 0;
-	private int currentPageindex = 0;
+	private int currentListPageindex = 0;
+
+	private int mapUpPageCount = 0;
+	private int currentUpPageindex = 0;
 
 	private List<FileInfo> mapListInfo;
+	private List<MyMapInfo> mapUpInfo;
 
 	private MyMap currentMap = null;
 
 	void Start() {
 		ReadFolderFile();
 		BuildMapList();
+
+		GetRemoteMaps();
+		BuildMapUp();
 	}
 
 	void Update() {
@@ -40,6 +55,14 @@ public class MyCreationManager : MonoBehaviour {
 
 	public void OnClickBack() {
 		SceneManager.LoadScene("HomeScene");
+	}
+
+	public void OnClickChangeState() {
+		isMapListState = !isMapListState;
+
+		mapList.SetActive(isMapListState);
+		mapUp.SetActive(!isMapListState);
+		buttonGroup.SetActive(isMapListState);
 	}
 
 	public void OnClickButtonGroup(string button) {
@@ -110,6 +133,9 @@ public class MyCreationManager : MonoBehaviour {
 		}
 
 		newMapWindow.SetActive(false);
+
+		ReadFolderFile();
+		BuildMapList();
 	}
 
 	public void OnClickChooseMap(MyMap map) {
@@ -119,9 +145,9 @@ public class MyCreationManager : MonoBehaviour {
 
 	public void OnClickPage(int type) {
 		if (type == 0) {
-			currentPageindex = currentPageindex - 1 < 0 ? 0 : currentPageindex - 1;
+			currentListPageindex = currentListPageindex - 1 < 0 ? 0 : currentListPageindex - 1;
 		} else if (type == 1) {
-			currentPageindex = currentPageindex + 1 > mapListPageCount - 1 ? mapListPageCount - 1 : currentPageindex + 1;
+			currentListPageindex = currentListPageindex + 1 > mapListPageCount - 1 ? mapListPageCount - 1 : currentListPageindex + 1;
 		}
 
 		BuildMapList();
@@ -149,22 +175,56 @@ public class MyCreationManager : MonoBehaviour {
 
 		// 给 list 节点添加对应的子项
 		int index = 0;
-		for (int i = currentPageindex * mapListGroupLength; i < Math.Min(mapListInfo.Count, (currentPageindex + 1) * mapListGroupLength); i++) {
+		for (int i = currentListPageindex * mapListGroupLength; i < Math.Min(mapListInfo.Count, (currentListPageindex + 1) * mapListGroupLength); i++) {
 			GameObject mymap = Instantiate(Resources.Load("prefab/MyMap") as GameObject);
 			mymap.transform.SetParent(mapListGroup.transform, true);
 			mymap.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0f, -60f * index, 0f);
-			mymap.GetComponent<MyMap>().Init(mapListInfo[i].Name, this);
+			mymap.GetComponent<MyMap>().Init(mapListInfo[i].Name.Split('.')[0], this);
 
 			index++;
 		}
 
 		// 更新页码
-		mapListPageText.text = (currentPageindex + 1).ToString() + " / " + mapListPageCount.ToString();
+		mapListPageText.text = (currentListPageindex + 1).ToString() + " / " + mapListPageCount.ToString();
 	}
 
 	public void UploadMap() {
 		string data = fileHelper.ReadFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
 		netHelper.Post("/uploadMap", data);
+	}
+
+	public void GetRemoteMaps() {
+		// 请求获取数据
+		string str = netHelper.Post("/getRemoteMapsInfo", JsonUtility.ToJson(LoginStatus.Instance.GetUser()));
+		GetRemoteMapsResult result = JsonUtility.FromJson<GetRemoteMapsResult>(str);
+		mapUpInfo = result.maps;
+
+		// 计算页数
+		mapUpPageCount = (int) Math.Ceiling((float) result.maps.Count / mapUpGroupLength);
+	}
+
+	public void BuildMapUp() {
+		// 清空 up 节点下的所有子节点
+		Transform[] children = mapUpGroup.transform.GetComponentsInChildren<Transform>();
+		foreach (Transform child in children) {
+			if (!child.Equals(mapUpGroup.transform)) {
+				Destroy(child.gameObject);
+			}
+		}
+
+		// 给 up 节点添加对应的子项
+		int index = 0;
+		for (int i = currentUpPageindex * mapUpGroupLength; i < Math.Min(mapUpInfo.Count, (currentUpPageindex + 1) * mapUpGroupLength); i++) {
+			GameObject mymap = Instantiate(Resources.Load("prefab/MyMap") as GameObject);
+			mymap.transform.SetParent(mapUpGroup.transform, true);
+			mymap.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0f, -60f * index, 0f);
+			mymap.GetComponent<MyMap>().Init(mapUpInfo[i].nickname, this);
+
+			index++;
+		}
+
+		// 更新页码
+		mapUpPageText.text = (currentUpPageindex + 1).ToString() + " / " + mapUpPageCount.ToString();
 	}
 }
 

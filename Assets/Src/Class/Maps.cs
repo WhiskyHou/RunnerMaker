@@ -69,3 +69,18 @@ public class MapInfo {
 	public int uid;
 	public string nickname;
 }
+
+
+[Serializable]
+public class GetRemoteMapsResult {
+	public int error;
+	public List<MyMapInfo> maps;
+}
+[Serializable]
+public class MyMapInfo {
+	public string nickname;
+	public int goodCount;
+	public int diffCount;
+	public int passCount;
+	public int trysCount;
+}
