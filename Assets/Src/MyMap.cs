@@ -9,6 +9,8 @@ public class MyMap : MonoBehaviour {
 
 	public string fileName;
 
+	public MyMapInfo info;
+
 	private MyCreationManager manager;
 
 	public void OnClick() {
@@ -17,9 +19,10 @@ public class MyMap : MonoBehaviour {
 		}
 	}
 
-	public void Init(string name, MyCreationManager manager) {
+	public void Init(string name, MyCreationManager manager, MyMapInfo info = null) {
 		mapname.text = name;
-		fileName = name;
+		fileName = name + ".json";
+		this.info = info;
 		this.manager = manager;
 	}
 }

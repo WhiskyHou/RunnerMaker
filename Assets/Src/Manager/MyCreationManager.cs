@@ -21,6 +21,8 @@ public class MyCreationManager : MonoBehaviour {
 	public GameObject buttonGroup;
 	public GameObject newMapWindow;
 
+	public GameObject infoGroup;
+
 	public InputField nameText;
 	public InputField widthText;
 	public InputField heightText;
@@ -63,6 +65,7 @@ public class MyCreationManager : MonoBehaviour {
 		mapList.SetActive(isMapListState);
 		mapUp.SetActive(!isMapListState);
 		buttonGroup.SetActive(isMapListState);
+		infoGroup.SetActive(!isMapListState);
 	}
 
 	public void OnClickButtonGroup(string button) {
@@ -139,18 +142,30 @@ public class MyCreationManager : MonoBehaviour {
 	}
 
 	public void OnClickChooseMap(MyMap map) {
-		currentMap = map;
-		Debug.Log("=== currentmap: " + currentMap.fileName);
+		if (isMapListState) {
+			currentMap = map;
+			Debug.Log("=== currentmap: " + currentMap.fileName);
+		} else {
+			infoGroup.GetComponent<MyUpMapsInfo>().SetTexts(map.info.goodCount, map.info.diffCount, map.info.passCount, map.info.trysCount); ;
+		}
 	}
 
 	public void OnClickPage(int type) {
-		if (type == 0) {
-			currentListPageindex = currentListPageindex - 1 < 0 ? 0 : currentListPageindex - 1;
-		} else if (type == 1) {
-			currentListPageindex = currentListPageindex + 1 > mapListPageCount - 1 ? mapListPageCount - 1 : currentListPageindex + 1;
+		if (isMapListState) {
+			if (type == 0) {
+				currentListPageindex = currentListPageindex - 1 < 0 ? 0 : currentListPageindex - 1;
+			} else if (type == 1) {
+				currentListPageindex = currentListPageindex + 1 > mapListPageCount - 1 ? mapListPageCount - 1 : currentListPageindex + 1;
+			}
+			BuildMapList();
+		} else {
+			if (type == 0) {
+				currentUpPageindex = currentUpPageindex - 1 < 0 ? 0 : currentUpPageindex - 1;
+			} else if (type == 1) {
+				currentUpPageindex = currentUpPageindex + 1 > mapUpPageCount - 1 ? mapUpPageCount - 1 : currentUpPageindex + 1;
+			}
+			BuildMapUp();
 		}
-
-		BuildMapList();
 	}
 
 	public void ReadFolderFile() {
@@ -218,7 +233,7 @@ public class MyCreationManager : MonoBehaviour {
 			GameObject mymap = Instantiate(Resources.Load("prefab/MyMap") as GameObject);
 			mymap.transform.SetParent(mapUpGroup.transform, true);
 			mymap.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0f, -60f * index, 0f);
-			mymap.GetComponent<MyMap>().Init(mapUpInfo[i].nickname, this);
+			mymap.GetComponent<MyMap>().Init(mapUpInfo[i].nickname, this, mapUpInfo[i]);
 
 			index++;
 		}
