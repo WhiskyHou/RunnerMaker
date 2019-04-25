@@ -75,7 +75,7 @@ public class MyCreationManager : MonoBehaviour {
 				break;
 			case "remove":
 				if (currentMap) {
-					fileHelper.RemoveFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
+					RemoveMap();
 				}
 				break;
 			case "upload":
@@ -137,6 +137,7 @@ public class MyCreationManager : MonoBehaviour {
 
 		newMapWindow.SetActive(false);
 
+		currentListPageindex = 0;
 		ReadFolderFile();
 		BuildMapList();
 	}
@@ -206,6 +207,15 @@ public class MyCreationManager : MonoBehaviour {
 	public void UploadMap() {
 		string data = fileHelper.ReadFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
 		netHelper.Post("/uploadMap", data);
+
+		RemoveMap();
+	}
+
+	public void RemoveMap() {
+		fileHelper.RemoveFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
+		currentListPageindex = 0;
+		ReadFolderFile();
+		BuildMapList();
 	}
 
 	public void GetRemoteMaps() {

@@ -7,9 +7,17 @@ public class GameMap : MonoBehaviour {
 
 	public Text mapname;
 
-	public int mid;
+	public Text goodText;
 
-	public MapListManager manager;
+	public Text diffText;
+
+	public Text passText;
+
+	public Text trysText;
+
+	private int mid;
+
+	private MapListManager manager;
 
     void Start() {
 
@@ -21,13 +29,18 @@ public class GameMap : MonoBehaviour {
 
 	public void OnClick() {
 		if (manager) {
-			manager.EnterMap(this);
+			manager.EnterMap(mid);
 		}
 	}
 
-	public void Init(int mid, string name, MapListManager manager) {
-		this.mid = mid;
-		mapname.text = name;
+	public void Init(MapInfo info, MapListManager manager) {
+		mid = info.mid;
+		mapname.text = info.nickname;
+		goodText.text = info.goodCount.ToString();
+		diffText.text = info.diffCount.ToString();
+		passText.text = info.passCount.ToString();
+		trysText.text = info.trysCount.ToString();
+
 		this.manager = manager;
 	}
 }

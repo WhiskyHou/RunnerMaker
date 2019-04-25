@@ -68,6 +68,10 @@ public class MapInfo {
 	public int mid;
 	public int uid;
 	public string nickname;
+	public int goodCount;
+	public int diffCount;
+	public int passCount;
+	public int trysCount;
 }
 
 
