@@ -11,12 +11,12 @@ public class MapListManager : MonoBehaviour {
 	public int mapListGroupLength;
 	public Text mapListPageText;
 
-	public NetHelper netHelper;
-
 	private int mapListPageCount = 0;
 	private int currentListPageindex = 0;
 
 	private List<MapInfo> mapListInfo;
+
+	public NetHelper netHelper;
 
 	void Start() {
 		GetMapsInfo();
@@ -27,8 +27,17 @@ public class MapListManager : MonoBehaviour {
 
 	}
 
+
+	/**
+	 * 事件响应
+	 */
 	public void OnClickBack() {
 		SceneManager.LoadScene("HomeScene");
+	}
+
+	public void OnClickSort(int type) {
+		SortMapInfo(type);
+		BuildMapList();
 	}
 
 	public void OnClickPage(int type) {
@@ -40,6 +49,10 @@ public class MapListManager : MonoBehaviour {
 		BuildMapList();
 	}
 
+
+	/**
+	 * 列表的数据获取和构建
+	 */
 	public void GetMapsInfo() {
 		GetMapsResult result = JsonUtility.FromJson<GetMapsResult>(netHelper.Post("/getMaps", "{}"));
 
@@ -84,6 +97,10 @@ public class MapListManager : MonoBehaviour {
 		mapListPageText.text = (currentListPageindex + 1).ToString() + " / " + mapListPageCount.ToString();
 	}
 
+
+	/**
+	 * 逻辑处理
+	 */
 	public void EnterMap(int mid) {
 		string postData = "{\"mid\":\"" + mid + "\"}";
 		string data = netHelper.Post("/getMapById", postData);
@@ -92,10 +109,51 @@ public class MapListManager : MonoBehaviour {
 		EnterGame.Instance.SetMap(result);
 		SceneManager.LoadScene("SampleScene");
 	}
+
+	public void SortMapInfo(int type) {
+		if (type == 0) {
+			mapListInfo.Sort(new CompLatest());
+		} else if(type == 1) {
+			mapListInfo.Sort(new CompBest());
+		} else if(type == 2) {
+			mapListInfo.Sort(new CompHardest());
+		}
+	}
 }
 
-class CompLatest : Comparer<GameMap> {
-	public override int Compare(GameMap x, GameMap y) {
-		throw new System.NotImplementedException();
+class CompLatest : Comparer<MapInfo> {
+	public override int Compare(MapInfo x, MapInfo y) {
+		if (x.mid < y.mid) {
+			return 1;
+		} if(x.mid > y.mid) {
+			return - 1;
+		}
+		return 0;
+	}
+}
+
+class CompBest : Comparer<MapInfo> {
+	public override int Compare(MapInfo x, MapInfo y) {
+		if (x.goodCount < y.goodCount) {
+			return 1;
+		} if (x.goodCount > y.goodCount) {
+			return -1;
+		}
+		return 0;
+	}
+}
+
+class CompHardest : Comparer<MapInfo> {
+	public override int Compare(MapInfo x, MapInfo y) {
+
+		float xPre = x.passCount == 0 ? ((float)x.trysCount / 1) : ((float)x.trysCount / x.passCount);
+		float yPre = y.passCount == 0 ? ((float)y.trysCount / 1) : ((float)y.trysCount / y.passCount);
+
+		if (xPre < yPre) {
+			return 1;
+		} if (xPre > yPre) {
+			return -1;
+		}
+		return 0;
 	}
 }

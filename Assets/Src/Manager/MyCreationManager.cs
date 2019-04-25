@@ -55,6 +55,10 @@ public class MyCreationManager : MonoBehaviour {
 
 	}
 
+
+	/**
+	 * 事件响应
+	 */ 
 	public void OnClickBack() {
 		SceneManager.LoadScene("HomeScene");
 	}
@@ -169,6 +173,10 @@ public class MyCreationManager : MonoBehaviour {
 		}
 	}
 
+
+	/**
+	 * 两个列表的数据获取和构建
+	 */
 	public void ReadFolderFile() {
 		// 读取文件夹下文件列表
 		string path = "Data/" + LoginStatus.Instance.GetUser().username + "/";
@@ -204,20 +212,6 @@ public class MyCreationManager : MonoBehaviour {
 		mapListPageText.text = (currentListPageindex + 1).ToString() + " / " + mapListPageCount.ToString();
 	}
 
-	public void UploadMap() {
-		string data = fileHelper.ReadFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
-		netHelper.Post("/uploadMap", data);
-
-		RemoveMap();
-	}
-
-	public void RemoveMap() {
-		fileHelper.RemoveFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
-		currentListPageindex = 0;
-		ReadFolderFile();
-		BuildMapList();
-	}
-
 	public void GetRemoteMaps() {
 		// 请求获取数据
 		string str = netHelper.Post("/getRemoteMapsInfo", JsonUtility.ToJson(LoginStatus.Instance.GetUser()));
@@ -250,6 +244,24 @@ public class MyCreationManager : MonoBehaviour {
 
 		// 更新页码
 		mapUpPageText.text = (currentUpPageindex + 1).ToString() + " / " + mapUpPageCount.ToString();
+	}
+
+
+	/**
+	 * 逻辑处理
+	 */
+	public void UploadMap() {
+		string data = fileHelper.ReadFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
+		netHelper.Post("/uploadMap", data);
+
+		RemoveMap();
+	}
+
+	public void RemoveMap() {
+		fileHelper.RemoveFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
+		currentListPageindex = 0;
+		ReadFolderFile();
+		BuildMapList();
 	}
 }
 
