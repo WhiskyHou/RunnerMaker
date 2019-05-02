@@ -21,7 +21,7 @@ public class NetHelper : MonoBehaviour {
 		HttpWebRequest requset = WebRequest.Create(host + url) as HttpWebRequest;
 		requset.Method = "POST";
 		requset.ContentType = "application/json";
-		requset.Timeout = 2000;
+		requset.Timeout = 5000;
 
 		byte[] data = Encoding.UTF8.GetBytes(json);
 		requset.ContentLength = data.Length;
