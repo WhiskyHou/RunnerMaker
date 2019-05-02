@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour {
 
 	public ResultWindow resultWindow;
 
-	private Map map;
+	public GameObject WinTabFuncButtons;
 
-	private int status = 0; 	// 0: ing 1: over 2: pass
+	public NetHelper netHelper;
+
+	private Map map;
 
     void Start() {
 		map = GetComponent<MapBuilder>().GetMap();
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour {
 		Debug.Log("=== Game Over ===");
 		Time.timeScale = 0;
 		resultWindow.Show(false, "你可真是太菜了");
+
+		WinTabFuncButtons.SetActive(false);
 	}
 
 	public void GamePass() {
@@ -35,11 +39,23 @@ public class GameManager : MonoBehaviour {
 
 		Timer timer = GameObject.Find("Timer").GetComponent<Timer>();
 		resultWindow.Show(true, "通关用时： " + timer.GetDurringTime().ToString() + "S");
+
+		WinTabFuncButtons.SetActive(true);
 	}
 
 	public void OnClickBack() {
 		Time.timeScale = 1;
 		SceneManager.LoadScene("MapListScene");
+	}
+
+	public void OnClickFuncButtons(int type) {
+		if (type == 0) {
+			string data = "{\"uid\":" + LoginStatus.Instance.GetUser().uid + ",\"mid\":" + map.mid + "}";
+			string result = netHelper.Post("/upgradeMapInfo", data);
+			Debug.Log(result);
+		} else if (type == 1) {
+
+		}
 	}
 
 	public void GoBackToMapListScene() {
