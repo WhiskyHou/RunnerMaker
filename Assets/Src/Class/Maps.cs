@@ -57,7 +57,7 @@ public class Property {
 }
 
 
-// 获取所有地图的基本信息
+// 获取所有地图的基本信息 用于挑战界面地图列表
 [Serializable]
 public class GetMapsResult {
 	public int error;
@@ -75,6 +75,7 @@ public class MapInfo {
 }
 
 
+// 获取我的已发布的地图信息 用于我的创造界面已上传的地图列表
 [Serializable]
 public class GetRemoteMapsResult {
 	public int error;

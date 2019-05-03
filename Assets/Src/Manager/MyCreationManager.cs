@@ -234,10 +234,10 @@ public class MyCreationManager : MonoBehaviour {
 		// 给 up 节点添加对应的子项
 		int index = 0;
 		for (int i = currentUpPageindex * mapUpGroupLength; i < Math.Min(mapUpInfo.Count, (currentUpPageindex + 1) * mapUpGroupLength); i++) {
-			GameObject mymap = Instantiate(Resources.Load("prefab/MyMap") as GameObject);
+			GameObject mymap = Instantiate(Resources.Load("prefab/MyUpMap") as GameObject);
 			mymap.transform.SetParent(mapUpGroup.transform, true);
 			mymap.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0f, -60f * index, 0f);
-			mymap.GetComponent<MyMap>().Init(mapUpInfo[i].nickname, this, mapUpInfo[i]);
+			mymap.GetComponent<MyUpMap>().Init(mapUpInfo[i]);
 
 			index++;
 		}
