@@ -10,8 +10,9 @@ public class GetGoodRankResult {
 }
 [Serializable]
 public class GoodRankInfo {
+	public int uid;
 	public int rank;
-	public string userNme;
+	public string nickname;
 	public int goodCount;
 }
 
@@ -24,7 +25,8 @@ public class GetCreateRankResult {
 }
 [Serializable]
 public class CreateRankInfo {
+	public int uid;
 	public int rank;
-	public string userName;
+	public string nickname;
 	public int createCount;
 }

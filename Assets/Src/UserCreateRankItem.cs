@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UserGoodRankItem : MonoBehaviour {
+public class UserCreateRankItem : MonoBehaviour {
 
 	public Text rankText;
 
@@ -11,7 +11,7 @@ public class UserGoodRankItem : MonoBehaviour {
 
 	public Text goodNumText;
 
-    void Start() {
+	void Start() {
         
     }
 
@@ -19,9 +19,9 @@ public class UserGoodRankItem : MonoBehaviour {
         
     }
 
-	public void Init(GoodRankInfo info) {
+	public void Init(CreateRankInfo info) {
 		rankText.text = info.rank.ToString();
 		userNameText.text = info.nickname;
-		goodNumText.text = info.goodCount.ToString();
+		goodNumText.text = info.createCount.ToString();
 	}
 }
