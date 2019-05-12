@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -17,7 +18,7 @@ public class NetHelper : MonoBehaviour {
         
     }
 
-	public string Post(string url, string json) {
+	public void Post(string url, string json, Action<string> callback = null) {
 		HttpWebRequest requset = WebRequest.Create(host + url) as HttpWebRequest;
 		requset.Method = "POST";
 		requset.ContentType = "application/json";
@@ -39,6 +40,8 @@ public class NetHelper : MonoBehaviour {
 			result = reader.ReadToEnd();
 		}
 
-		return result;
+		if(callback != null) {
+			callback(result);
+		}
 	}
 }

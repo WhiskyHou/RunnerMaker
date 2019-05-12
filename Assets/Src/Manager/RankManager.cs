@@ -28,9 +28,6 @@ public class RankManager : MonoBehaviour {
 	void Start() {
 		GetRemoteGoodRank();
 		GetRemoteCreateRank();
-
-		BuildGoodRank();
-		BuildCreateRank();
 	}
 
 	void Update() {
@@ -42,24 +39,30 @@ public class RankManager : MonoBehaviour {
 	}
 
 	public void GetRemoteGoodRank() {
-		string res = netHelper.Post("/getGoodRank", JsonUtility.ToJson(LoginStatus.Instance.GetUser()));
-		GetGoodRankResult result = JsonUtility.FromJson<GetGoodRankResult>(res);
-		if(result.error == 0) {
-			goodRankList = result.list;
-			myGoodRank = result.me;
-		}
-		Debug.Log("==== good rank list");
+		netHelper.Post("/getGoodRank", JsonUtility.ToJson(LoginStatus.Instance.GetUser()), (string res) => {
+			GetGoodRankResult result = JsonUtility.FromJson<GetGoodRankResult>(res);
+			if(result.error == 0) {
+				goodRankList = result.list;
+				myGoodRank = result.me;
+			}
+			Debug.Log("==== good rank list");
+
+			BuildGoodRank();
+		});
 	}
 
 	public void GetRemoteCreateRank() {
-		string res = netHelper.Post("/getCreateRank", JsonUtility.ToJson(LoginStatus.Instance.GetUser()));
-		GetCreateRankResult result = JsonUtility.FromJson<GetCreateRankResult>(res);
-		if (result.error == 0) {
-			createRankList = result.list;
-			myCreateRank = result.me;
-		}
-		Debug.Log("==== create rank list");
-		Debug.Log(res);
+		netHelper.Post("/getCreateRank", JsonUtility.ToJson(LoginStatus.Instance.GetUser()), (string res) => {
+			GetCreateRankResult result = JsonUtility.FromJson<GetCreateRankResult>(res);
+			if (result.error == 0) {
+				createRankList = result.list;
+				myCreateRank = result.me;
+			}
+			Debug.Log("==== create rank list");
+			Debug.Log(res);
+
+			BuildCreateRank();
+		});
 	}
 
 	public void BuildGoodRank() {

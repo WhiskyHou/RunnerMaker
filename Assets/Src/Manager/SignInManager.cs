@@ -38,29 +38,30 @@ public class SignInManager : MonoBehaviour {
 
 		string postData = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\"}";
 
-		string res = net.Post("/signin", postData);
-		SignInResult result = JsonUtility.FromJson<SignInResult>(res);
+		net.Post("/signin", postData, (string res) => {
+			SignInResult result = JsonUtility.FromJson<SignInResult>(res);
 
-		if (result.error == 0) {
-			Debug.Log("=== Sign in ===\n登录成功");
+			if (result.error == 0) {
+				Debug.Log("=== Sign in ===\n登录成功");
 
-			LoginStatus.Instance.Login(result.data);
-			if (!Directory.Exists("Data/" + result.data.username)) {
-				Directory.CreateDirectory("Data/" + result.data.username);
+				LoginStatus.Instance.Login(result.data);
+				if (!Directory.Exists("Data/" + result.data.username)) {
+					Directory.CreateDirectory("Data/" + result.data.username);
+				}
+				SceneManager.LoadScene("HomeScene");
+
+			} else if (result.error == 1) {
+				Debug.Log("=== Sign in ===\n密码错误");
+				CreateToast("密码错误");
+
+			} else if (result.error == 2) {
+				Debug.Log("=== Sign in ===\n用户名错误");
+				CreateToast("用户名不存在");
+
 			}
-			SceneManager.LoadScene("HomeScene");
 
-		} else if (result.error == 1) {
-			Debug.Log("=== Sign in ===\n密码错误");
-			CreateToast("密码错误");
-
-		} else if (result.error == 2) {
-			Debug.Log("=== Sign in ===\n用户名错误");
-			CreateToast("用户名不存在");
-
-		}
-
-		ResetInput();
+			ResetInput();
+		});
 	}
 
 	public void OnClickSignUpButton() {
@@ -88,20 +89,21 @@ public class SignInManager : MonoBehaviour {
 
 		} else {
 			string postData = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\",\"nickname\":\"" + nickname + "\"}";
-			string res = net.Post("/signup", postData);
-			SignUpResult result = JsonUtility.FromJson<SignUpResult>(res);
-			if (result.error == 0) {
-				Debug.Log("=== Sign up ===\n注册成功");
+			net.Post("/signup", postData, (string res) => {
+				SignUpResult result = JsonUtility.FromJson<SignUpResult>(res);
+				if (result.error == 0) {
+					Debug.Log("=== Sign up ===\n注册成功");
 
-			} else if (result.error == 1) {
-				Debug.Log("=== Sign up ===\n用户名已存在");
-				CreateToast("用户名已被使用");
+				} else if (result.error == 1) {
+					Debug.Log("=== Sign up ===\n用户名已存在");
+					CreateToast("用户名已被使用");
 
-			} else if (result.error == 2) {
-				Debug.Log("=== Sign up ===\n注册失败");
-				CreateToast("注册失败");
+				} else if (result.error == 2) {
+					Debug.Log("=== Sign up ===\n注册失败");
+					CreateToast("注册失败");
 
-			}
+				}
+			});
 		}
 
 		ResetInput();

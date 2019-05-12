@@ -54,14 +54,17 @@ public class MapListManager : MonoBehaviour {
 	 * 列表的数据获取和构建
 	 */
 	public void GetMapsInfo() {
-		GetMapsResult result = JsonUtility.FromJson<GetMapsResult>(netHelper.Post("/getMaps", "{}"));
+		netHelper.Post("/getMaps", "{}", (string res) => {
+			GetMapsResult result = JsonUtility.FromJson<GetMapsResult>(res);
 
-		if(result.error == 0) {
-			mapListInfo = result.maps;
-			mapListPageCount = (int)Math.Ceiling((float)result.maps.Count / mapListGroupLength);
-		} else {
-			Debug.Log("=== get maps info fail ===");
-		}
+			if(result.error == 0) {
+				mapListInfo = result.maps;
+				mapListPageCount = (int)Math.Ceiling((float)result.maps.Count / mapListGroupLength);
+			} else {
+				Debug.Log("=== get maps info fail ===");
+			}
+		});
+
 	}
 
 	public void BuildMapList() {
@@ -103,11 +106,12 @@ public class MapListManager : MonoBehaviour {
 	 */
 	public void EnterMap(int mid) {
 		string postData = "{\"mid\":\"" + mid + "\"}";
-		string data = netHelper.Post("/getMapById", postData);
+		netHelper.Post("/getMapById", postData, (string res) => {
+			Map result = JsonUtility.FromJson<Map>(res);
+			EnterGame.Instance.SetMap(result);
+			SceneManager.LoadScene("SampleScene");
+		});
 
-		Map result = JsonUtility.FromJson<Map>(data);
-		EnterGame.Instance.SetMap(result);
-		SceneManager.LoadScene("SampleScene");
 	}
 
 	public void SortMapInfo(int type) {

@@ -214,12 +214,12 @@ public class MyCreationManager : MonoBehaviour {
 
 	public void GetRemoteMaps() {
 		// 请求获取数据
-		string str = netHelper.Post("/getRemoteMapsInfo", JsonUtility.ToJson(LoginStatus.Instance.GetUser()));
-		GetRemoteMapsResult result = JsonUtility.FromJson<GetRemoteMapsResult>(str);
-		mapUpInfo = result.maps;
-
-		// 计算页数
-		mapUpPageCount = (int) Math.Ceiling((float) result.maps.Count / mapUpGroupLength);
+		netHelper.Post("/getRemoteMapsInfo", JsonUtility.ToJson(LoginStatus.Instance.GetUser()), (string res)=> {
+			GetRemoteMapsResult result = JsonUtility.FromJson<GetRemoteMapsResult>(res);
+			mapUpInfo = result.maps;
+			// 计算页数
+			mapUpPageCount = (int) Math.Ceiling((float) result.maps.Count / mapUpGroupLength);
+		});
 	}
 
 	public void BuildMapUp() {
