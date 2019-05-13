@@ -109,7 +109,7 @@ public class MapListManager : MonoBehaviour {
 		netHelper.Post("/getMapById", postData, (string res) => {
 			Map result = JsonUtility.FromJson<Map>(res);
 			EnterGame.Instance.SetMap(result);
-			SceneManager.LoadScene("SampleScene");
+			SceneManager.LoadScene("GameScene");
 		});
 
 	}
