@@ -74,6 +74,6 @@ public class GameManager : MonoBehaviour {
 
 	public void RePlay() {
 		Time.timeScale = 1;
-		SceneManager.LoadScene("SampleScene");
+		SceneManager.LoadScene("GameScene");
 	}
 }

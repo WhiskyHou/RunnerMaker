@@ -45,10 +45,8 @@ public class MyCreationManager : MonoBehaviour {
 
 	void Start() {
 		ReadFolderFile();
-		BuildMapList();
 
 		GetRemoteMaps();
-		BuildMapUp();
 	}
 
 	void Update() {
@@ -186,6 +184,8 @@ public class MyCreationManager : MonoBehaviour {
 
 		// 计算页数
 		mapListPageCount = (int) Math.Ceiling((float) mapListInfo.Count / mapListGroupLength);
+
+		BuildMapList();
 	}
 
 	public void BuildMapList() {
@@ -219,6 +219,8 @@ public class MyCreationManager : MonoBehaviour {
 			mapUpInfo = result.maps;
 			// 计算页数
 			mapUpPageCount = (int) Math.Ceiling((float) result.maps.Count / mapUpGroupLength);
+
+			BuildMapUp();
 		});
 	}
 
