@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour {
 
 	public float horizontalBufferNum;
 
+	public AudioSource audioSource;
+
 	private MovingState movingState = MovingState.stand;
 
 	private bool isAirring = false;
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (!isAirring && goJump) {
+			audioSource.Play();
 			rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0f);
 			rigidbody.AddForce(new Vector2(0f, jumpForce));
 			isAirring = true;
@@ -51,11 +54,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.A)) {
+		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
 			movingState = MovingState.left;
 			ua.armature.flipX = false;
 			ua.animation.Play("boy-move");
-		} else if (Input.GetKeyDown(KeyCode.D)) {
+		} else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
 			movingState = MovingState.right;
 			ua.armature.flipX = true;
 			ua.animation.Play("boy-move");
@@ -65,13 +68,13 @@ public class PlayerController : MonoBehaviour {
 			goJump = true;
 		}
 
-		if (Input.GetKeyUp(KeyCode.A)) {
+		if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow)) {
 			if(movingState == MovingState.left) {
 				movingState = MovingState.stand;
 				ua.animation.Stop("boy-move");
 				ua.animation.Reset();
 			}
-		} else if (Input.GetKeyUp(KeyCode.D)) {
+		} else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow)) {
 			if(movingState == MovingState.right) {
 				movingState = MovingState.stand;
 				ua.animation.Stop("boy-move");
