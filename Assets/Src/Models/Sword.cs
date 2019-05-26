@@ -6,8 +6,10 @@ public class Sword : MonoBehaviour {
 
 	public float rotateSpeed;
 
-    void Start() {
-        
+	private GameManager manager;
+
+	void Start() {
+		manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update() {
@@ -16,7 +18,12 @@ public class Sword : MonoBehaviour {
     }
 
 	void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.gameObject.tag == "Player")
-			Debug.Log("=== Sword trigger enter ===");
+		if (collision.gameObject.tag == "Player") {
+			manager.GameOver();
+		}
+	}
+
+	public void Init(GameManager manager) {
+		this.manager = manager;
 	}
 }

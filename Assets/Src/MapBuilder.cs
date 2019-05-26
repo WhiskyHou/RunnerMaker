@@ -139,7 +139,7 @@ public class MapBuilder : MonoBehaviour {
 		for (int i = 1-boundSize; i <= width + boundSize; i++) {
 			GameObject killer = Instantiate(killerPrefab);
 			killer.transform.position = new Vector3(i, 1 - boundSize, 0);
-			killer.GetComponent<Killer>().Init(GetComponent<GameManager>());
+			//killer.GetComponent<Killer>().Init(GetComponent<GameManager>());
 		}
 	}
 }

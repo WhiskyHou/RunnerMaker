@@ -12,8 +12,10 @@ public class SharkBullet : MonoBehaviour {
 
 	private float rangeTime = 0f;
 
-    void Start() {
-		
+	private GameManager manager;
+
+	void Start() {
+		manager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 
 	void Update() {
@@ -28,7 +30,7 @@ public class SharkBullet : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.gameObject.tag == "Player") {
-			// ... player die
+			manager.GameOver();
 			Remove();
 		} else if (collision.gameObject.tag != "Cannon") {
 			Remove();
@@ -48,5 +50,9 @@ public class SharkBullet : MonoBehaviour {
 
 	public void Remove() {
 		transform.parent.gameObject.GetComponent<Cannon>().pool.Add(gameObject);
+	}
+
+	public void Init(GameManager manager) {
+		this.manager = manager;
 	}
 }

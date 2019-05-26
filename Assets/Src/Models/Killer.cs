@@ -7,8 +7,8 @@ public class Killer : MonoBehaviour {
 	private GameManager manager;
 
     void Start() {
-        
-    }
+		manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+	}
 
     void Update() {
         
