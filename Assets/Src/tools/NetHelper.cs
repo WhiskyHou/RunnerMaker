@@ -6,17 +6,23 @@ using System.Net;
 using System.Text;
 using UnityEngine;
 
-public class NetHelper : MonoBehaviour {
+public class NetHelper {
 
-	private string host = "http://localhost:8686";
+	private static NetHelper instance = null;
+	public static NetHelper Instance {
+		get {
+			if (instance == null) {
+				instance = new NetHelper();
+			}
+			return instance;
+		}
+	}
 
-    void Start() {
-        
-    }
+	public string host = "http://localhost:8686";
 
-    void Update() {
-        
-    }
+	public void SetHost(string ip) {
+		host = "http://" + ip + ":8686";
+	}
 
 	public void Post(string url, string json, Action<string> callback = null) {
 		HttpWebRequest requset = WebRequest.Create(host + url) as HttpWebRequest;

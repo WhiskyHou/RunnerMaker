@@ -15,7 +15,7 @@ public class RankManager : MonoBehaviour {
 
 	public int createRankRootLength;
 
-	public NetHelper netHelper;
+	private NetHelper netHelper = NetHelper.Instance;
 
 	private GoodRankInfo myGoodRank;
 

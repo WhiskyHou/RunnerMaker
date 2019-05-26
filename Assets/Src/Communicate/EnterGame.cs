@@ -16,6 +16,10 @@ public class EnterGame {
 
 	public Map map;
 
+	public bool isCheckingMap = false;
+
+	public string checkMapFilename = "";
+
 	public void SetMap(Map map) {
 		this.map = map;
 	}

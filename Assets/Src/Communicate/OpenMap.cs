@@ -29,6 +29,8 @@ public class OpenMap {
 
 	public string mapData;
 
+	public string fileName;
+
 	public string filePath;
 
 
@@ -54,6 +56,7 @@ public class OpenMap {
 		// windows build
 		//mapData = File.ReadAllText(@"assets/config/out.json");
 
+		fileName = filename;
 		filePath = "Data/" + LoginStatus.Instance.GetUser().username + "/" + filename;
 		mapData = File.ReadAllText(filePath);
 	}

@@ -6,19 +6,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FileHelper : MonoBehaviour {
+public class FileHelper {
 
-	private string path = @"Assets/config/outfile.json";
-
-	private string data = "";
-
-    void Start() {
-        
-    }
-
-    void Update() {
-        
-    }
+	private static FileHelper instance = null;
+	public static FileHelper Instance {
+		get {
+			if (instance == null) {
+				instance = new FileHelper();
+			}
+			return instance;
+		}
+	}
 
 	public string ReadFile(string path) {
 		try {
@@ -50,5 +48,11 @@ public class FileHelper : MonoBehaviour {
 		if (File.Exists(path)) {
 			File.Delete(path);
 		}
+	}
+
+	public void RenameFile(string path, string newPath) {
+		string data = ReadFile(path);
+		File.Delete(path);
+		WriteToFile(newPath, data);
 	}
 }

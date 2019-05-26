@@ -112,28 +112,34 @@ public class MapBuilder : MonoBehaviour {
 	}
 
 	public void BuildBound() {
-		int boundSize = 5;
+		int boundSize = 8;
 		GameObject killerPrefab = Resources.Load("prefab/killer") as GameObject;
 		float width = data.width;
 		float height = data.height;
 
-		// 横向边界
-		for (int i = 1 - boundSize; i <= width + boundSize; i++) {
-			GameObject killer1 = Instantiate(killerPrefab);
-			killer1.transform.position = new Vector3(i, 1 - boundSize, 0);
-			GameObject killer2 = Instantiate(killerPrefab);
-			killer2.transform.position = new Vector3(i, height + boundSize, 0);
-			killer1.GetComponent<Killer>().Init(GetComponent<GameManager>());
-			killer2.GetComponent<Killer>().Init(GetComponent<GameManager>());
-		}
-		// 纵向边界
-		for (int i = 2 - boundSize; i < height + boundSize; i++) {
-			GameObject killer1 = Instantiate(killerPrefab);
-			killer1.transform.position = new Vector3(1 - boundSize, i, 0);
-			GameObject killer2 = Instantiate(killerPrefab);
-			killer2.transform.position = new Vector3(width + boundSize, i, 0);
-			killer1.GetComponent<Killer>().Init(this.GetComponent<GameManager>());
-			killer2.GetComponent<Killer>().Init(this.GetComponent<GameManager>());
+		//// 横向边界
+		//for (int i = 1 - boundSize; i <= width + boundSize; i++) {
+		//	GameObject killer1 = Instantiate(killerPrefab);
+		//	killer1.transform.position = new Vector3(i, 1 - boundSize, 0);
+		//	GameObject killer2 = Instantiate(killerPrefab);
+		//	killer2.transform.position = new Vector3(i, height + boundSize, 0);
+		//	killer1.GetComponent<Killer>().Init(GetComponent<GameManager>());
+		//	killer2.GetComponent<Killer>().Init(GetComponent<GameManager>());
+		//}
+		//// 纵向边界
+		//for (int i = 2 - boundSize; i < height + boundSize; i++) {
+		//	GameObject killer1 = Instantiate(killerPrefab);
+		//	killer1.transform.position = new Vector3(1 - boundSize, i, 0);
+		//	GameObject killer2 = Instantiate(killerPrefab);
+		//	killer2.transform.position = new Vector3(width + boundSize, i, 0);
+		//	killer1.GetComponent<Killer>().Init(this.GetComponent<GameManager>());
+		//	killer2.GetComponent<Killer>().Init(this.GetComponent<GameManager>());
+		//}
+
+		for (int i = 1-boundSize; i <= width + boundSize; i++) {
+			GameObject killer = Instantiate(killerPrefab);
+			killer.transform.position = new Vector3(i, 1 - boundSize, 0);
+			killer.GetComponent<Killer>().Init(GetComponent<GameManager>());
 		}
 	}
 }

@@ -27,8 +27,8 @@ public class MyCreationManager : MonoBehaviour {
 	public InputField widthText;
 	public InputField heightText;
 
-	public FileHelper fileHelper;
-	public NetHelper netHelper;
+	private FileHelper fileHelper = FileHelper.Instance;
+	private NetHelper netHelper = NetHelper.Instance;
 
 	private bool isMapListState = true;
 
@@ -126,11 +126,13 @@ public class MyCreationManager : MonoBehaviour {
 				countDown = 0
 			};
 
-			string path = "Data/" + LoginStatus.Instance.GetUser().username + "/" + nameText.text + ".json";
-			// TODO: 这里判断需要重写
-			if (File.Exists(path)) {
+			string path = "Data/" + LoginStatus.Instance.GetUser().username + "/" + nameText.text + ".json.no";
+			string pathok = "Data/" + LoginStatus.Instance.GetUser().username + "/" + nameText.text + ".json.ok";
+			// TODO: 这里判断需要重写 
+			// 5.26: 忽略文件后缀类型进行重复性判断
+			if (File.Exists(path) || File.Exists(pathok)) {
 				GameObject toast = Instantiate(Resources.Load("prefab/toast") as GameObject);
-				toast.transform.SetParent(GameObject.Find("UI").transform, false);
+				toast.transform.SetParent(GameObject.Find("Canvas").transform, false);
 				toast.GetComponent<Toast>().Set("已有同名地图关卡", 2000);
 			} else {
 				fileHelper.WriteToFile(path, JsonUtility.ToJson(map));
@@ -149,7 +151,7 @@ public class MyCreationManager : MonoBehaviour {
 			currentMap = map;
 			Debug.Log("=== currentmap: " + currentMap.fileName);
 		} else {
-			infoGroup.GetComponent<MyUpMapsInfo>().SetTexts(map.info.goodCount, map.info.diffCount, map.info.passCount, map.info.trysCount); ;
+			// infoGroup.GetComponent<MyUpMapsInfo>().SetTexts(map.info.goodCount, map.info.diffCount, map.info.passCount, map.info.trysCount); ;
 		}
 	}
 
@@ -203,7 +205,7 @@ public class MyCreationManager : MonoBehaviour {
 			GameObject mymap = Instantiate(Resources.Load("prefab/MyMap") as GameObject);
 			mymap.transform.SetParent(mapListGroup.transform, true);
 			mymap.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0f, -60f * index, 0f);
-			mymap.GetComponent<MyMap>().Init(mapListInfo[i].Name.Split('.')[0], this);
+			mymap.GetComponent<MyMap>().Init(mapListInfo[i].Name, this);
 
 			index++;
 		}
@@ -253,10 +255,16 @@ public class MyCreationManager : MonoBehaviour {
 	 * 逻辑处理
 	 */
 	public void UploadMap() {
-		string data = fileHelper.ReadFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
-		netHelper.Post("/uploadMap", data);
+		if (currentMap.fileName.Split('.')[2] == "ok") {
+			string data = fileHelper.ReadFile("Data/" + LoginStatus.Instance.GetUser().username + "/" + currentMap.fileName);
+			netHelper.Post("/uploadMap", data);
 
-		RemoveMap();
+			RemoveMap();
+		} else {
+			GameObject toast = Instantiate(Resources.Load("prefab/toast") as GameObject);
+			toast.transform.SetParent(GameObject.Find("Canvas").transform, false);
+			toast.GetComponent<Toast>().Set("未通关验证的地图不能上传", 2000);
+		}
 	}
 
 	public void RemoveMap() {

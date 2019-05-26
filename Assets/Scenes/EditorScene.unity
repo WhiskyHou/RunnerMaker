@@ -522,14 +522,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2057852523}
-        m_MethodName: OnClickSaveButton
-        m_Mode: 1
+        m_MethodName: ClickFuncKey
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Save
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1437,14 +1437,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2057852523}
-        m_MethodName: OnClickSaveButton
-        m_Mode: 1
+        m_MethodName: ClickFuncKey
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Play
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2497,8 +2497,6 @@ GameObject:
   - component: {fileID: 2057852525}
   - component: {fileID: 2057852523}
   - component: {fileID: 2057852522}
-  - component: {fileID: 2057852524}
-  - component: {fileID: 2057852526}
   m_Layer: 0
   m_Name: EditorManager
   m_TagString: Untagged
@@ -2544,19 +2542,6 @@ MonoBehaviour:
   - {fileID: 675474944591378033, guid: 228632e99755c074bb28c8aa0b213600, type: 3}
   countDown: {fileID: 1433233687}
   line: {fileID: 7781894417180286062, guid: ac32f3f4aa6123248b76137a03f61702, type: 3}
-  fileHelper: {fileID: 2057852524}
---- !u!114 &2057852524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057852521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e3be66e91e8bb645ac1bb47ab056924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2057852525
 Transform:
   m_ObjectHideFlags: 0
@@ -2571,15 +2556,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2057852526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057852521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05ec1a170e3d864dbcda3b02784e9bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

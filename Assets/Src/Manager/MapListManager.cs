@@ -16,7 +16,7 @@ public class MapListManager : MonoBehaviour {
 
 	private List<MapInfo> mapListInfo;
 
-	public NetHelper netHelper;
+	private NetHelper netHelper = NetHelper.Instance;
 
 	void Start() {
 		GetMapsInfo();
@@ -109,6 +109,7 @@ public class MapListManager : MonoBehaviour {
 		netHelper.Post("/getMapById", postData, (string res) => {
 			Map result = JsonUtility.FromJson<Map>(res);
 			EnterGame.Instance.SetMap(result);
+			EnterGame.Instance.isCheckingMap = false;
 			SceneManager.LoadScene("GameScene");
 		});
 

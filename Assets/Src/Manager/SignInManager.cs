@@ -15,7 +15,7 @@ public class SignInManager : MonoBehaviour {
 
 	public GameObject retypePasswordWindow;
 
-	public NetHelper net;
+	private NetHelper net = NetHelper.Instance;
 
 	private string username = "";
 	private string password = "";
@@ -23,6 +23,9 @@ public class SignInManager : MonoBehaviour {
 	private string nickname = "";
 
 	void Start() {
+		string ip = FileHelper.Instance.ReadFile("host.conf");
+		net.SetHost(ip);
+
 		Application.targetFrameRate = 120;
 
 		ResetInput();

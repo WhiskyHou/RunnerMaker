@@ -13,7 +13,7 @@ public class EditorManager : MonoBehaviour {
 
 	public GameObject line;
 
-	public FileHelper fileHelper;
+	private FileHelper fileHelper = FileHelper.Instance;
 
 	private Map map = new Map();
 
@@ -45,10 +45,6 @@ public class EditorManager : MonoBehaviour {
 		ClickNumber(index);
 	}
 
-	public void OnClickSaveButton() {
-		ClickFuncKey("Save");
-	}
-
 	public void ClickMouse(int x, int y, bool isLeft) {
 		if (isLeft) {
 			//(currentObject == null) ? RemoveObj(x, y) : CreateObj(x,y);
@@ -71,8 +67,16 @@ public class EditorManager : MonoBehaviour {
 	public void ClickFuncKey(string key) {
 		switch (key) {
 			case "Save":
+				UpgradeMap();
 				SaveToFile();
+				ChangeMapStateToNo();
 				SceneManager.LoadScene("MyCreationScene");
+				break;
+			case "Play":
+				UpgradeMap();
+				SaveToFile();
+				PlayToCheck();
+				SceneManager.LoadScene("GameScene");
 				break;
 			default:
 				break;
@@ -131,11 +135,8 @@ public class EditorManager : MonoBehaviour {
 		}
 	}
 
-	private void SaveToFile() {
-		Debug.Log("=== Save List's length: " + list.Count);
-
+	private void UpgradeMap() {
 		map.countDown = int.Parse(countDown.text);
-
 		map.nodeInfo.Clear();
 		list.ForEach((item) => {
 			Vector3 pos = item.transform.position;
@@ -155,9 +156,22 @@ public class EditorManager : MonoBehaviour {
 				map.nodeInfo.Add(node);
 			}
 		});
-
 		map.Log();
+	}
+
+	private void SaveToFile() {
+		Debug.Log("=== Save List's length: " + list.Count);
 
 		fileHelper.WriteToFile(OpenMap.Instance.filePath, JsonUtility.ToJson(map));
+	}
+
+	private void ChangeMapStateToNo() {
+		fileHelper.RenameFile(OpenMap.Instance.filePath, OpenMap.Instance.filePath.Split('.')[0] + ".json.no");
+	}
+
+	private void PlayToCheck() {
+		EnterGame.Instance.isCheckingMap = true;
+		EnterGame.Instance.checkMapFilename = OpenMap.Instance.fileName;
+		EnterGame.Instance.SetMap(map);
 	}
 }
